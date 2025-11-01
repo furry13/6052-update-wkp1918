@@ -4,23 +4,23 @@ abbrev: "nat64-wkp-1918"
 category: std
 
 docname: draft-kumkova-v6ops-nat64-wkp-1918-latest
-submissiontype: IETF 
+submissiontype: IETF
 number:
 date:
 consensus: true
 v: 3
-area: Ops
-workgroup: "V6Ops Working Group"
+area: "Operations and Management"
+workgroup: "IPv6 Operations"
 keyword:
   - ipv6
   - nat64
   - wkp
 venue:
-  group: "V6Ops Working Group"
+  group: "IPv6 Operations"
   type: "Working Group"
-  mail: v6ops@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/v6ops/
-  github: furry13/6052-update-wkp1918
+  mail: "v6ops@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/v6ops/"
+  github: "furry13/6052-update-wkp1918"
 
 author:
  -
@@ -60,7 +60,7 @@ Enterprise and other closed networks often require IPv6-only nodes to communicat
 The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers.
 
 
-Using two NAT64 prefixes — the WKP for Internet destinations and a Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible solution for nodes performing local synthesis or running CLAT. 
+Using two NAT64 prefixes — the WKP for Internet destinations and a Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible solution for nodes performing local synthesis or running CLAT.
 None of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781]) provide  a method to map a specific NAT64 prefix to a subset of IPv4 addresses for which it should be used.
 
 According to Section 3 of [RFC7050], a node must use all learned prefixes when performing local IPv6 address synthesis.
