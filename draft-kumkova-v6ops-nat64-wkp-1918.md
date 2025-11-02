@@ -31,7 +31,7 @@ author:
 
  -
     fullname: Jen Linkova
-    organization: Google
+    organization: Google, LLC
     email: furry13@gmail.com
 
 normative:
