@@ -40,12 +40,15 @@ normative:
 informative:
   RFC7050:
   RFC8781:
+  RFC8215:
+  eid5547:
+
 
 ...
 
 --- abstract
 
-This document removes the requirement in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
 
 --- middle
 
@@ -57,11 +60,11 @@ This restriction is relatively straightforward to implement in DNS64 [RFC6147]: 
 However, this requirement introduces significant operational challenges for systems that do not rely on DNS64 and instead use local synthesis such as CLAT (Customer-side Translator, [RFC6877]), or similar approaches.
 
 Enterprise and other closed networks often require IPv6-only nodes to communicate with both internal (e.g., using RFC1918 addresses) and external (Internet) IPv4-only destinations.
-The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers.
+The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers which utilize the WKP in order to maximize compatibility.
 
 
 Using two NAT64 prefixes — the WKP for Internet destinations and a Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible solution for nodes performing local synthesis or running CLAT.
-None of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781]) provide  a method to map a specific NAT64 prefix to a subset of IPv4 addresses for which it should be used.
+None of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781]) provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses for which it should be used.
 
 According to Section 3 of [RFC7050], a node must use all learned prefixes when performing local IPv6 address synthesis.
 Consequently, if a node discovers both the WKP and the NSP, it will use both prefixes to represent global IPv4 addresses.
@@ -105,8 +108,29 @@ Address translators MUST translate packets in which an address is composed of th
 
 ===
 
+As noted in [eid5547]:
+
+```
+IPv4 packets with private addresses are routinely translated to IPv4 packets with global addresses in NAT44. If a 464XLAT CLAT (stateless NAT64) cannot translate a private address to an IPv6 /96 prefix with that address as an IID (or whatever it's called), then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle. 
+```
+
+Removing the requirement introduced in RFC 6052 Section 3.1 addresses this errata.
 
 # Operational Considerations
+
+There may be cases when it is desirable to ignore translation of private use IPv4 addressing due to internal policy or overlapping internal networks. It is important to note, however, that overlapping networks in IPv6 translated addresses are also overlapping in IPv4, and so behavior will be similar across protocols in the vast majority of use cases. In environments reliant on [RFC7050] may be required to create configurations which address the filtering of private use IPv4 addressing if there is an expectation of compliance with the original section 3.1.
+
+## Existing Behavior
+
+Testing of existing non-mobile CLAT implementations has shown that there is significant lack of support for compliance with the original test of [RFC6052] section 3.1, indicating the operational behaviors of devices utilizing a client side translator (CLAT) are aligned with the proposed text at present, and that compliance with the existing text will cause potential operational overhead as adjustments to current practice will be required.
+
+Further, where client side translation and local synthesis is used, it is currently not possible to employ more than one translation prefix, as none of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781]) provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses for which it should be used.
+
+## Use of Network Specific Prefix
+
+Use of a network specific prefix such as provided by [RFC8215] does not preclude the removal of section 3.1 as a MUST requirement. If a network employs a network specific prefix the behavior of synthesizing a private use IPv4 address is not prevented by standard. The use of a network specific prefix implies the existence of a local mechanism for synthesizing IPv6 addresses based on that specific prefix, and thereby rules out use of a public DNS64 resolver in the vast majority of cases, as large scale public DNS64 resolvers use the WKP to maximize compatibility.
+
+
 
 # Security Considerations
 
