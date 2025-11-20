@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-18T00:56:06.689846+00:00",
+  "timestamp": "2025-11-20T00:54:47.795791+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -63,7 +63,7 @@
       "labels": [],
       "body": "I think this is an important doc. I had some thoughts last night and put them down here. Feel free to ignore or cherrypick. ",
       "createdAt": "2025-11-06T17:33:30Z",
-      "updatedAt": "2025-11-07T15:16:34Z",
+      "updatedAt": "2025-11-19T18:38:17Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "901c0883f3a49b34b021d2d7d61cdab88d3602eb",
@@ -83,7 +83,41 @@
           "updatedAt": "2025-11-07T15:16:34Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es7PrOPc",
+          "commit": {
+            "abbreviatedOid": "b62314e"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-11-19T18:37:36Z",
+          "updatedAt": "2025-11-19T18:37:37Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\nIPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44. \r\nSimilarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].\r\nIf a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address [RFC6052], then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle. \r\n```",
+              "createdAt": "2025-11-19T18:37:37Z",
+              "updatedAt": "2025-11-19T18:37:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es7PrOwM",
+          "commit": {
+            "abbreviatedOid": "b62314e"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "LGTM but I've made some editing suggestions - I hope I got the intent correctly.\r\n",
+          "createdAt": "2025-11-19T18:38:17Z",
+          "updatedAt": "2025-11-19T18:38:17Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
