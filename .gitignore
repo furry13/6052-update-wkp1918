@@ -17,6 +17,7 @@
 /node_modules/
 /versioned/
 archive.json
+draft-ietf-v6ops-nat64-wkp-1918.xml
 draft-kumkova-v6ops-nat64-wkp-1918.xml
 Gemfile.lock
 package-lock.json
