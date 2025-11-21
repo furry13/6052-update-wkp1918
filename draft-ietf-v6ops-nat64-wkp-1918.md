@@ -41,6 +41,9 @@ informative:
   RFC7050:
   RFC8781:
   RFC8215:
+  EID5547:
+    title: "Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be used for Private Use IPv4 Addresses"
+    url: "https://www.rfc-editor.org/errata/eid5547"
 
 
 ...
@@ -107,7 +110,7 @@ Address translators MUST translate packets in which an address is composed of th
 
 ===
 
-As noted in eid5547:
+As noted in [eid5547]:
 
 ```
 IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
