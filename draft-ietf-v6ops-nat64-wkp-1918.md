@@ -3,7 +3,7 @@ title: "NAT64 WKP"
 abbrev: "nat64-wkp-1918"
 category: std
 
-docname: draft-kumkova-v6ops-nat64-wkp-1918-latest
+docname: draft-ietf-v6ops-nat64-wkp-1918-latest
 submissiontype: IETF
 number:
 date:
@@ -41,7 +41,6 @@ informative:
   RFC7050:
   RFC8781:
   RFC8215:
-  eid5547:
 
 
 ...
@@ -108,12 +107,12 @@ Address translators MUST translate packets in which an address is composed of th
 
 ===
 
-As noted in [eid5547]:
+As noted in eid5547:
 
 ```
-IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44. 
+IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
 Similarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].
-If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address [RFC6052], then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle. 
+If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address [RFC6052], then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle.
 ```
 
 Removing the requirement introduced in RFC 6052 Section 3.1 addresses this errata.
