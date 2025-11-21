@@ -2,12 +2,12 @@
 
 # NAT64 WKP
 
-This is the working area for the individual Internet-Draft, "NAT64 WKP".
+This is the working area for the IETF [V6OPS Working Group](https://datatracker.ietf.org/group/v6ops/documents/) Internet-Draft, "NAT64 WKP".
 
-* [Editor's Copy](https://furry13.github.io/6052-update-wkp1918/#go.draft-kumkova-v6ops-nat64-wkp-1918.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-kumkova-v6ops-nat64-wkp-1918)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-kumkova-v6ops-nat64-wkp-1918)
-* [Compare Editor's Copy to Individual Draft](https://furry13.github.io/6052-update-wkp1918/#go.draft-kumkova-v6ops-nat64-wkp-1918.diff)
+* [Editor's Copy](https://furry13.github.io/6052-update-wkp1918/#go.draft-ietf-v6ops-nat64-wkp-1918.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-v6ops-nat64-wkp-1918)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-v6ops-nat64-wkp-1918)
+* [Compare Editor's Copy to Working Group Draft](https://furry13.github.io/6052-update-wkp1918/#go.draft-ietf-v6ops-nat64-wkp-1918.diff)
 
 
 ## Contributing
