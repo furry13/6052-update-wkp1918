@@ -1258,7 +1258,7 @@ Address translators <span class="bcp14">MUST NOT</span> translate packets in whi
 <p id="section-3-8">The Well-Known Prefix <span class="bcp14">MAY</span> be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
 Address translators <span class="bcp14">MUST</span> translate packets in which an address is composed of the Well-Known Prefix and a non- global IPv4 address; they <span class="bcp14">MUST NOT</span> drop these packets.<a href="#section-3-8" class="pilcrow">¶</a></p>
 <p id="section-3-9">===<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">As noted in eid5547:<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-10">As noted in <span>[<a href="#EID5547" class="cite xref">EID5547</a>]</span>:<a href="#section-3-10" class="pilcrow">¶</a></p>
 <p id="section-3-11"><code>
 IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
 Similarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].
@@ -1340,6 +1340,10 @@ If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address usi
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="EID5547">[EID5547]</dt>
+        <dd>
+<span class="refTitle">"Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be used for Private Use IPv4 Addresses"</span>, <span>n.d.</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7050">[RFC7050]</dt>
         <dd>
 <span class="refAuthor">Savolainen, T.</span>, <span class="refAuthor">Korhonen, J.</span>, and <span class="refAuthor">D. Wing</span>, <span class="refTitle">"Discovery of the IPv6 Prefix Used for IPv6 Address Synthesis"</span>, <span class="seriesInfo">RFC 7050</span>, <span class="seriesInfo">DOI 10.17487/RFC7050</span>, <time datetime="2013-11" class="refDate">November 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7050">https://www.rfc-editor.org/rfc/rfc7050</a>&gt;</span>. </dd>

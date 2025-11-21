@@ -169,7 +169,7 @@ Table of Contents
 
    ===
 
-   As noted in eid5547:
+   As noted in [EID5547]:
 
    IPv4 packets with private destination addresses are routinely
    translated to IPv4 packets with global destination addresses in
@@ -254,6 +254,9 @@ Table of Contents
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 7.2.  Informative References
+
+   [EID5547]  "Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be
+              used for Private Use IPv4 Addresses", n.d..
 
    [RFC7050]  Savolainen, T., Korhonen, J., and D. Wing, "Discovery of
               the IPv6 Prefix Used for IPv6 Address Synthesis",
