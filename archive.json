@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-20T00:54:47.795791+00:00",
+  "timestamp": "2025-11-23T01:03:28.906531+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -56,24 +56,26 @@
       "id": "PR_kwDOQNM3Es6x9BTI",
       "title": "ndb-suggestions",
       "url": "https://github.com/furry13/6052-update-wkp1918/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "buraglio",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "I think this is an important doc. I had some thoughts last night and put them down here. Feel free to ignore or cherrypick. ",
       "createdAt": "2025-11-06T17:33:30Z",
-      "updatedAt": "2025-11-19T18:38:17Z",
+      "updatedAt": "2025-11-21T22:32:05Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "901c0883f3a49b34b021d2d7d61cdab88d3602eb",
       "headRepository": "buraglio/6052-update-wkp1918",
       "headRefName": "ndb-edits",
-      "headRefOid": "b62314e95f4b6806320c21c3284748fa1de0b41c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "4b122c88be18ec7cd2acba99987b3846be20a378",
+      "closedAt": "2025-11-21T22:32:00Z",
+      "mergedAt": "2025-11-21T22:32:00Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "1cc758c798905accdf0ab3b2a5f03a9a98fe9cd5"
+      },
       "comments": [
         {
           "author": "wkumari",
@@ -81,6 +83,20 @@
           "body": "Thank you; this looks good to me, but I'll wait for my co-author to noodle in case I'm missing something obvious....",
           "createdAt": "2025-11-07T15:16:34Z",
           "updatedAt": "2025-11-07T15:16:34Z"
+        },
+        {
+          "author": "buraglio",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "+1, LGTM",
+          "createdAt": "2025-11-20T21:51:29Z",
+          "updatedAt": "2025-11-20T21:51:29Z"
+        },
+        {
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks. Merging and posting a new (draft-ietf-) version....",
+          "createdAt": "2025-11-21T22:32:05Z",
+          "updatedAt": "2025-11-21T22:32:05Z"
         }
       ],
       "reviews": [
@@ -115,6 +131,19 @@
           "body": "LGTM but I've made some editing suggestions - I hope I got the intent correctly.\r\n",
           "createdAt": "2025-11-19T18:38:17Z",
           "updatedAt": "2025-11-19T18:38:17Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOQNM3Es7QSznt",
+          "commit": {
+            "abbreviatedOid": "4b122c8"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-21T22:31:26Z",
+          "updatedAt": "2025-11-21T22:31:26Z",
           "comments": []
         }
       ]
