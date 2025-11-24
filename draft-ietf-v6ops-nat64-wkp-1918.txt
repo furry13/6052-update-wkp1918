@@ -5,7 +5,7 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Intended status: Standards Track                             Google, LLC
-Expires: 25 May 2026                                    21 November 2025
+Expires: 28 May 2026                                    24 November 2025
 
 
                                NAT64 WKP
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 May 2026.
+   This Internet-Draft will expire on 28 May 2026.
 
 Copyright Notice
 
@@ -169,7 +169,7 @@ Table of Contents
 
    ===
 
-   As noted in [EID5547]:
+   As noted in Errata 5547 ([EID5547]):
 
    IPv4 packets with private destination addresses are routinely
    translated to IPv4 packets with global destination addresses in
@@ -256,7 +256,33 @@ Table of Contents
 7.2.  Informative References
 
    [EID5547]  "Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be
-              used for Private Use IPv4 Addresses", n.d..
+              used for Private Use IPv4 Addresses", n.d.,
+              <https://www.rfc-editor.org/errata/eid5547>.
+
+   [RFC1918]  Rekhter, Y., Moskowitz, B., Karrenberg, D., de Groot, G.
+              J., and E. Lear, "Address Allocation for Private
+              Internets", BCP 5, RFC 1918, DOI 10.17487/RFC1918,
+              February 1996, <https://www.rfc-editor.org/rfc/rfc1918>.
+
+   [RFC5735]  Cotton, M. and L. Vegoda, "Special Use IPv4 Addresses",
+              RFC 5735, DOI 10.17487/RFC5735, January 2010,
+              <https://www.rfc-editor.org/rfc/rfc5735>.
+
+   [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
+              NAT64: Network Address and Protocol Translation from IPv6
+              Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
+              April 2011, <https://www.rfc-editor.org/rfc/rfc6146>.
+
+   [RFC6147]  Bagnulo, M., Sullivan, A., Matthews, P., and I. van
+              Beijnum, "DNS64: DNS Extensions for Network Address
+              Translation from IPv6 Clients to IPv4 Servers", RFC 6147,
+              DOI 10.17487/RFC6147, April 2011,
+              <https://www.rfc-editor.org/rfc/rfc6147>.
+
+   [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
+              Combination of Stateful and Stateless Translation",
+              RFC 6877, DOI 10.17487/RFC6877, April 2013,
+              <https://www.rfc-editor.org/rfc/rfc6877>.
 
    [RFC7050]  Savolainen, T., Korhonen, J., and D. Wing, "Discovery of
               the IPv6 Prefix Used for IPv6 Address Synthesis",

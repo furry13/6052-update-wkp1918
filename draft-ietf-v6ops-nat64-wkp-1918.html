@@ -8,7 +8,7 @@
 <meta content="Warren Kumari" name="author">
 <meta content="Jen Linkova" name="author">
 <meta content="
-       This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96  MUST NOT  be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735]. 
+       This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96  MUST NOT  be used to represent non-global IPv4 addresses, such as those defined in   or listed in Section 3 of  . 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
 <meta content="ipv6" name="keyword">
@@ -1050,7 +1050,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kumari &amp; Linkova</td>
-<td class="center">Expires 25 May 2026</td>
+<td class="center">Expires 28 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-v6ops-nat64-wkp-1918-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-21" class="published">21 November 2025</time>
+<time datetime="2025-11-24" class="published">24 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-25">25 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-28">28 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1085,7 +1085,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">NAT64 WKP</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 <span class="bcp14">MUST NOT</span> be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 <span class="bcp14">MUST NOT</span> be used to represent non-global IPv4 addresses, such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> or listed in Section 3 of <span>[<a href="#RFC5735" class="cite xref">RFC5735</a>]</span>.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1121,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1207,9 +1207,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Section 3.1 of <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> prohibits IPv4/IPv6 translators from using the Well-Known Prefix (WKP, 64:FF9B::/96) to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This restriction is relatively straightforward to implement in DNS64 [RFC6147]: a DNS64 server simply avoids synthesizing an AAAA record using the WKP if the original A record contains a non-global IPv4 address.
-However, this requirement introduces significant operational challenges for systems that do not rely on DNS64 and instead use local synthesis such as CLAT (Customer-side Translator, [RFC6877]), or similar approaches.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-1">Section 3.1 of <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> prohibits IPv4/IPv6 translators from using the Well-Known Prefix (WKP, 64:FF9B::/96) to represent non-global IPv4 addresses, such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> or listed in Section 3 of <span>[<a href="#RFC5735" class="cite xref">RFC5735</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This restriction is relatively straightforward to implement in DNS64 <span>[<a href="#RFC6147" class="cite xref">RFC6147</a>]</span>: a DNS64 server simply avoids synthesizing an AAAA record using the WKP if the original A record contains a non-global IPv4 address.
+However, this requirement introduces significant operational challenges for systems that do not rely on DNS64 and instead use local synthesis such as CLAT (Customer-side Translator, <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span>), or similar approaches.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Enterprise and other closed networks often require IPv6-only nodes to communicate with both internal (e.g., using RFC1918 addresses) and external (Internet) IPv4-only destinations.
 The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers which utilize the WKP in order to maximize compatibility.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">Using two NAT64 prefixes — the WKP for Internet destinations and a Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible solution for nodes performing local synthesis or running CLAT.
@@ -1250,15 +1250,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-1">This document updates Section 3.1 of <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> ("Restrictions on the Use of the Well-Known Prefix") as follows:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">OLD TEXT:<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">===<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The Well-Known Prefix <span class="bcp14">MUST NOT</span> be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+<p id="section-3-4">The Well-Known Prefix <span class="bcp14">MUST NOT</span> be used to represent non-global IPv4 addresses, such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> or listed in Section 3 of <span>[<a href="#RFC5735" class="cite xref">RFC5735</a>]</span>.
 Address translators <span class="bcp14">MUST NOT</span> translate packets in which an address is composed of the Well-Known Prefix and a non- global IPv4 address; they <span class="bcp14">MUST</span> drop these packets.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">===<a href="#section-3-5" class="pilcrow">¶</a></p>
 <p id="section-3-6">NEW TEXT:<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">===<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">The Well-Known Prefix <span class="bcp14">MAY</span> be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+<p id="section-3-8">The Well-Known Prefix <span class="bcp14">MAY</span> be used to represent non-global IPv4 addresses, such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> or listed in Section 3 of <span>[<a href="#RFC5735" class="cite xref">RFC5735</a>]</span>.
 Address translators <span class="bcp14">MUST</span> translate packets in which an address is composed of the Well-Known Prefix and a non- global IPv4 address; they <span class="bcp14">MUST NOT</span> drop these packets.<a href="#section-3-8" class="pilcrow">¶</a></p>
 <p id="section-3-9">===<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">As noted in <span>[<a href="#EID5547" class="cite xref">EID5547</a>]</span>:<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-10">As noted in Errata 5547 (<span>[<a href="#EID5547" class="cite xref">EID5547</a>]</span>):<a href="#section-3-10" class="pilcrow">¶</a></p>
 <p id="section-3-11"><code>
 IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
 Similarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].
@@ -1342,7 +1342,27 @@ If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address usi
 <dl class="references">
 <dt id="EID5547">[EID5547]</dt>
         <dd>
-<span class="refTitle">"Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be used for Private Use IPv4 Addresses"</span>, <span>n.d.</span>. </dd>
+<span class="refTitle">"Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be used for Private Use IPv4 Addresses"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.rfc-editor.org/errata/eid5547">https://www.rfc-editor.org/errata/eid5547</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1918">[RFC1918]</dt>
+        <dd>
+<span class="refAuthor">Rekhter, Y.</span>, <span class="refAuthor">Moskowitz, B.</span>, <span class="refAuthor">Karrenberg, D.</span>, <span class="refAuthor">de Groot, G. J.</span>, and <span class="refAuthor">E. Lear</span>, <span class="refTitle">"Address Allocation for Private Internets"</span>, <span class="seriesInfo">BCP 5</span>, <span class="seriesInfo">RFC 1918</span>, <span class="seriesInfo">DOI 10.17487/RFC1918</span>, <time datetime="1996-02" class="refDate">February 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1918">https://www.rfc-editor.org/rfc/rfc1918</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5735">[RFC5735]</dt>
+        <dd>
+<span class="refAuthor">Cotton, M.</span> and <span class="refAuthor">L. Vegoda</span>, <span class="refTitle">"Special Use IPv4 Addresses"</span>, <span class="seriesInfo">RFC 5735</span>, <span class="seriesInfo">DOI 10.17487/RFC5735</span>, <time datetime="2010-01" class="refDate">January 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5735">https://www.rfc-editor.org/rfc/rfc5735</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6146">[RFC6146]</dt>
+        <dd>
+<span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">I. van Beijnum</span>, <span class="refTitle">"Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers"</span>, <span class="seriesInfo">RFC 6146</span>, <span class="seriesInfo">DOI 10.17487/RFC6146</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6146">https://www.rfc-editor.org/rfc/rfc6146</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6147">[RFC6147]</dt>
+        <dd>
+<span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Sullivan, A.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">I. van Beijnum</span>, <span class="refTitle">"DNS64: DNS Extensions for Network Address Translation from IPv6 Clients to IPv4 Servers"</span>, <span class="seriesInfo">RFC 6147</span>, <span class="seriesInfo">DOI 10.17487/RFC6147</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6147">https://www.rfc-editor.org/rfc/rfc6147</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6877">[RFC6877]</dt>
+        <dd>
+<span class="refAuthor">Mawatari, M.</span>, <span class="refAuthor">Kawashima, M.</span>, and <span class="refAuthor">C. Byrne</span>, <span class="refTitle">"464XLAT: Combination of Stateful and Stateless Translation"</span>, <span class="seriesInfo">RFC 6877</span>, <span class="seriesInfo">DOI 10.17487/RFC6877</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6877">https://www.rfc-editor.org/rfc/rfc6877</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7050">[RFC7050]</dt>
         <dd>
