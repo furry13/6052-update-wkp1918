@@ -111,7 +111,7 @@ NEW TEXT:
 ===
 
 The Well-Known Prefix MAY be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
-Address translators MUST translate packets in which an address is composed of the Well-Known Prefix and a non- global IPv4 address; they MUST NOT drop these packets.
+By default, address translators MUST translate packets in which an address is composed of the Well-Known Prefix and a non-global IPv4 address; they MUST NOT drop these packets unless configured to do so.
 
 ===
 
