@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-23T01:03:28.906531+00:00",
+  "timestamp": "2025-11-25T00:55:31.223144+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -147,6 +147,34 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOQNM3Es61Tjra",
+      "title": "Update draft-ietf-v6ops-nat64-wkp-1918.md",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/2",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-11-24T23:30:52Z",
+      "updatedAt": "2025-11-24T23:31:43Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "c1dc61bd96831d5861ce791eafaf419cebd760f7",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "adoption",
+      "headRefOid": "5923465396505edad68dcf3dee76de100aaf7f28",
+      "closedAt": "2025-11-24T23:31:43Z",
+      "mergedAt": "2025-11-24T23:31:43Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "df40ff8293a38e4f4fa318ca020e5020d4f71e22"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
