@@ -5,7 +5,7 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Intended status: Standards Track                             Google, LLC
-Expires: 28 May 2026                                    24 November 2025
+Expires: 31 August 2026                                 27 February 2026
 
 
                                NAT64 WKP
@@ -16,7 +16,9 @@ Abstract
    This document removes the requirement introduced in Section 3.1 of
    RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be
    used to represent non-global IPv4 addresses, such as those defined in
-   [RFC1918] or listed in Section 3 of [RFC5735].
+   [RFC1918] or listed in Section 3 of [RFC5735].  The proposed change
+   enables IPv6-only nodes to reach IPv4-only services with non-global
+   addresses by leveraging the Well-Known Prefix.
 
 About This Document
 
@@ -48,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 May 2026.
+   This Internet-Draft will expire on 31 August 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -100,7 +102,8 @@ Table of Contents
    communicate with both internal (e.g., using RFC1918 addresses) and
    external (Internet) IPv4-only destinations.  The restriction in
    Section 3.1 of RFC6052 prevents such networks from utilizing the WKP
-   and, consequently, from relying on public DNS64 servers which utilize
+   and, consequently, from relying on public DNS64 servers (e.g.
+   forwarding requests for external zones to public DNS64) which utilize
    the WKP in order to maximize compatibility.
 
    Using two NAT64 prefixes — the WKP for Internet destinations and a
@@ -163,10 +166,11 @@ Table of Contents
 
    The Well-Known Prefix MAY be used to represent non-global IPv4
    addresses, such as those defined in [RFC1918] or listed in Section 3
-   of [RFC5735].  By default, address translators MUST translate packets
-   in which an address is composed of the Well-Known Prefix and a non-
-   global IPv4 address; they MUST NOT drop these packets unless
-   configured to do so.
+   of [RFC5735].  Address translators MUST translate packets in which an
+   address is composed of the Well-Known Prefix and a non-global IPv4
+   address unless configured otherwise.  Implementations MAY choose not
+   to translate such packets by default.  Such implementation SHOULD
+   have a configuration knob to enable translation for such packets.
 
    ===
 
@@ -230,7 +234,34 @@ Table of Contents
 
 5.  Security Considerations
 
-   TODO Security
+   Legitimizing packets where the IPv6 destination address is composed
+   of the WKP and a non-global IPv4 address does not, inherently,
+   introduce new security considerations.  Whether a specific traffic
+   flow between an IPv6-only source and a non-global IPv4 destination
+   (or any flow to a non-global IPv4 destination) is legitimate is a
+   matter of local network topology and administrative policy.  However,
+   existing NAT64 implementations compliant with RFC 6052 are expected
+   to drop such packets.  Administrators may be relying on this implicit
+   filtering as a built-in security mechanism to prevent unauthorized
+   access to private IPv4 infrastructure, rather than implementing
+   explicit security policies.  This reliance is particularly prevalent
+   in managed NAT64 (PLAT) environments.
+
+   Modifying the recommended behavior to allow such address compositions
+   may, in the absence of explicit filtering, enable traffic flows that
+   were previously prohibited by the translator's default logic.  To
+   mitigate this risk, existing managed NAT64 implementations compliant
+   with RFC 6052 SHOULD NOT alter their default dropping behavior.
+   Instead, they SHOULD provide a configuration knob to enable this
+   functionality, ensuring that the transition to supporting non-global
+   addresses is an intentional administrative action accompanied by a
+   review of local security policies.
+
+   Furthermore, administrators should not rely on the internal
+   verification logic of the translator to enforce security boundaries.
+   Instead, explicit polcies such as access control lists (ACLs),
+   firewall policies or NAT rules must be used to define authorized
+   traffic patterns through the translator.
 
 6.  IANA Considerations
 
@@ -300,8 +331,9 @@ Table of Contents
 
 Acknowledgments
 
-   The authors would like to thank .... for their helpful comments and
-   suggestions on this document.
+   The authors would like to thank Mohamed Boucadair, Nick Buraglio,
+   Lorenzo Colitti, Suresh Krishnan, Ted Lemon, Jordi Palet for their
+   helpful comments and suggestions on this document.
 
 Authors' Addresses
 
