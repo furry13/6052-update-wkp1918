@@ -149,7 +149,7 @@ Whether a specific traffic flow between an IPv6-only source and a non-global IPv
 Administrators may be relying on this implicit filtering as a built-in security mechanism to prevent unauthorized access to private IPv4 infrastructure, rather than implementing explicit security policies.
 This reliance is particularly prevalent in managed NAT64 (PLAT) environments.
 
-Modifying the recommended behavior to allow such address compositions may, in the absence of explicit filtering, enable traffic flows that were previously prohibited by the translator's default logic. 
+Modifying the recommended behavior to allow such address compositions may, in the absence of explicit filtering, enable traffic flows that were previously prohibited by the translator's default logic.
 To mitigate this risk, existing managed NAT64 implementations compliant with RFC 6052 SHOULD NOT alter their default dropping behavior.
 Instead, they SHOULD provide a configuration knob to enable this functionality, ensuring that the transition to supporting non-global addresses is an intentional administrative action accompanied by a review of local security policies.
 
