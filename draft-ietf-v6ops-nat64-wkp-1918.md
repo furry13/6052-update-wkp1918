@@ -56,6 +56,7 @@ informative:
 --- abstract
 
 This document removes the requirement introduced in Section 3.1 of RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+The proposed change enables IPv6-only nodes to reach IPv4-only services with non-global addresses by leveraging the Well-Known Prefix.
 
 --- middle
 
@@ -67,8 +68,7 @@ This restriction is relatively straightforward to implement in DNS64 [RFC6147]: 
 However, this requirement introduces significant operational challenges for systems that do not rely on DNS64 and instead use local synthesis such as CLAT (Customer-side Translator, [RFC6877]), or similar approaches.
 
 Enterprise and other closed networks often require IPv6-only nodes to communicate with both internal (e.g., using RFC1918 addresses) and external (Internet) IPv4-only destinations.
-The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers which utilize the WKP in order to maximize compatibility.
-
+The restriction in Section 3.1 of RFC6052 prevents such networks from utilizing the WKP and, consequently, from relying on public DNS64 servers (e.g. forwarding requests for external zones to public DNS64) which utilize the WKP in order to maximize compatibility.
 
 Using two NAT64 prefixes — the WKP for Internet destinations and a Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible solution for nodes performing local synthesis or running CLAT.
 None of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781]) provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses for which it should be used.
@@ -111,7 +111,9 @@ NEW TEXT:
 ===
 
 The Well-Known Prefix MAY be used to represent non-global IPv4 addresses, such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
-By default, address translators MUST translate packets in which an address is composed of the Well-Known Prefix and a non-global IPv4 address; they MUST NOT drop these packets unless configured to do so.
+Address translators MUST translate packets in which an address is composed of the Well-Known Prefix and a non-global IPv4 address unless configured otherwise.
+Implementations MAY choose not to translate such packets by default.
+Such implementation SHOULD have a configuration knob to enable translation for such packets.
 
 ===
 
@@ -140,11 +142,19 @@ Further, where client side translation and local synthesis is used, it is curren
 Use of a network specific prefix such as provided by [RFC8215] does not preclude the removal of section 3.1 as a MUST requirement. If a network employs a network specific prefix the behavior of synthesizing a private use IPv4 address is not prevented by standard. The use of a network specific prefix implies the existence of a local mechanism for synthesizing IPv6 addresses based on that specific prefix, and thereby rules out use of a public DNS64 resolver in the vast majority of cases, as large scale public DNS64 resolvers use the WKP to maximize compatibility.
 
 
-
 # Security Considerations
 
-TODO Security
+Legitimizing packets where the IPv6 destination address is composed of the WKP and a non-global IPv4 address does not, inherently, introduce new security considerations.
+Whether a specific traffic flow between an IPv6-only source and a non-global IPv4 destination (or any flow to a non-global IPv4 destination) is legitimate is a matter of local network topology and administrative policy. However, existing NAT64 implementations compliant with RFC 6052 are expected to drop such packets.
+Administrators may be relying on this implicit filtering as a built-in security mechanism to prevent unauthorized access to private IPv4 infrastructure, rather than implementing explicit security policies.
+This reliance is particularly prevalent in managed NAT64 (PLAT) environments.
 
+Modifying the recommended behavior to allow such address compositions may, in the absence of explicit filtering, enable traffic flows that were previously prohibited by the translator's default logic. 
+To mitigate this risk, existing managed NAT64 implementations compliant with RFC 6052 SHOULD NOT alter their default dropping behavior.
+Instead, they SHOULD provide a configuration knob to enable this functionality, ensuring that the transition to supporting non-global addresses is an intentional administrative action accompanied by a review of local security policies.
+
+Furthermore, administrators should not rely on the internal verification logic of the translator to enforce security boundaries.
+Instead, explicit polcies such as access control lists (ACLs), firewall policies or NAT rules must be used to define authorized traffic patterns through the translator.
 
 # IANA Considerations
 
@@ -156,5 +166,5 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank .... for their helpful comments and suggestions on this document.
+The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Suresh Krishnan, Ted Lemon, Jordi Palet for their helpful comments and suggestions on this document.
 
