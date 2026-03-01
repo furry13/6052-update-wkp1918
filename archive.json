@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-26T01:12:07.855239+00:00",
+  "timestamp": "2026-03-01T01:21:12.266035+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -174,6 +174,42 @@
         "oid": "df40ff8293a38e4f4fa318ca020e5020d4f71e22"
       },
       "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOQNM3Es7GwEew",
+      "title": "Address some of Med's comments",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/3",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Also adding Ack section and security considerations.",
+      "createdAt": "2026-02-27T07:24:43Z",
+      "updatedAt": "2026-02-27T18:48:25Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "df40ff8293a38e4f4fa318ca020e5020d4f71e22",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "pre-ietf125",
+      "headRefOid": "f817e485aef2d9826c19e1fb7a60d44d5ff076ae",
+      "closedAt": "2026-02-27T18:48:17Z",
+      "mergedAt": "2026-02-27T18:48:17Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "ff0398fbbfcf4eaf5c84c2016c4ff0a423b93124"
+      },
+      "comments": [
+        {
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thank you very much for doing this!\r\n\r\nI'm merging the PR, and after doing so I'll commit a new version with fixed line-lenghts and similar.",
+          "createdAt": "2026-02-27T18:48:25Z",
+          "updatedAt": "2026-02-27T18:48:25Z"
+        }
+      ],
       "reviews": []
     }
   ]
