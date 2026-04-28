@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-26T01:48:31.969018+00:00",
+  "timestamp": "2026-04-28T01:59:56.473440+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -210,6 +210,34 @@
           "updatedAt": "2026-02-27T18:48:25Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOQNM3Es7WJASN",
+      "title": "Break out CLAP/PLAT, 2 options for \"existing behavior\", add packet be\u2026",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/4",
+      "state": "OPEN",
+      "author": "wkumari",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "furry13"
+      ],
+      "labels": [],
+      "body": "This attempts to address the comments received during IETF 125. It breaks out CLAP/PLAT, 2 options for \"existing behavior\", add packet behavior.\r\n\r\n**NOTE**: There are 2 options for \"existing behavior\" - please choose one.\r\n\r\nComments:\r\n* Momoka: Requested clarification on the current behavior of CLATs -  some implementations do not enforce the restriction discussed in the draft\r\n  * Section 4.1 expanded to highlight this, and this doc as the solution.\r\n\r\n* Nick: Agreed that instructions because inconsistent CLAT behavior. Suggested adding examples (perhaps remove before pub.)\r\n  *  Added Appendix, clarify Existing Behavior.\r\n  \r\n* Med: Provided feedback on the mailing list (referenced by Jen during presentation) on finding wording that does not break existing deployments while still allowing the Well-Known Prefix.\r\n  * Section 3 normative text was refined to distinguish between unmanaged CLATs (which MUST translate) and managed PLATs (which MAY drop by default to preserve existing security postures).  ",
+      "createdAt": "2026-04-27T23:02:32Z",
+      "updatedAt": "2026-04-27T23:02:33Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "a41669a98ed1dbb7dfdbd0c9df3504fa52e4029c",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "IETF125_feedback",
+      "headRefOid": "4c20d0e18338974af093686b93aa936062139541",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
