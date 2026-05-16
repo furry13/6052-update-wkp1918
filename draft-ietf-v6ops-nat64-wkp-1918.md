@@ -56,7 +56,7 @@ informative:
 --- abstract
 
 This document removes the requirement introduced in Section 3.1 of RFC6052 that
-the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be used to represent
+the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be used to represent
 non-global IPv4 addresses, such as those defined in [RFC1918] or listed in
 Section 3 of [RFC5735]. The proposed change enables IPv6-only nodes to reach
 IPv4-only services with non-global addresses by leveraging the Well-Known
@@ -67,7 +67,7 @@ Prefix.
 # Introduction
 
 Section 3.1 of [RFC6052] prohibits IPv4/IPv6 translators from using the
-Well-Known Prefix (WKP, 64:FF9B::/96) to represent non-global IPv4 addresses,
+Well-Known Prefix (WKP, 64:ff9B::/96) to represent non-global IPv4 addresses,
 such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
 
 This restriction is relatively straightforward to implement in DNS64 [RFC6147]:
@@ -253,8 +253,8 @@ This document has no IANA actions.
 {:numbered="false"}
 
 The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo
-Colitti, Suresh Krishnan, Ted Lemon, Jordi Palet for their helpful comments and
-suggestions on this document.
+Colitti, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi Palet for their
+helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
@@ -274,7 +274,7 @@ An IPv4-only application on an unmanaged client device generates an IPv4 packet
 destined for 10.1.2.3.
 
 The local CLAT intercepts the IPv4 packet and synthesizes an IPv6 destination
-address by prepending the Well-Known Prefix: 64:ff9b::10.1.2.3.
+address by prepending the Well-Known Prefix: 64:ff9B::10.1.2.3.
 
 CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST translate
 this packet by default, ignoring the non-global nature of the embedded IPv4
@@ -282,7 +282,7 @@ address, and forward the resulting IPv6 packet to the network.
 
 The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
 
-PLAT Behavior: Upon receiving the packet destined for 64:ff9b::10.1.2.3, the
+PLAT Behavior: Upon receiving the packet destined for 64:ff9B::10.1.2.3, the
 PLAT evaluates its local configuration:
 
 Permit: If the administrator has explicitly enabled translation for non-global
@@ -297,7 +297,7 @@ this range, the PLAT drops the packet.
 {: numbered="false"}
 
 An IPv6-capable host (without a local CLAT) needs to communicate with the same
-internal service. It acquires the destination address 64:ff9b::10.1.2.3 (e.g.,
+internal service. It acquires the destination address 64:ff9B::10.1.2.3 (e.g.,
 via DNS64, local synthesis, or explicit application configuration).
 
 The host transmits the IPv6 packet, which is routed to the PLAT.
