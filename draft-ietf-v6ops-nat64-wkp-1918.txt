@@ -14,7 +14,7 @@ Expires: 17 November 2026                                    16 May 2026
 Abstract
 
    This document removes the requirement introduced in Section 3.1 of
-   RFC6052 that the NAT64 Well-Known Prefix 64:FF9B::/96 MUST NOT be
+   RFC6052 that the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be
    used to represent non-global IPv4 addresses, such as those defined in
    [RFC1918] or listed in Section 3 of [RFC5735].  The proposed change
    enables IPv6-only nodes to reach IPv4-only services with non-global
@@ -89,7 +89,7 @@ Table of Contents
 1.  Introduction
 
    Section 3.1 of [RFC6052] prohibits IPv4/IPv6 translators from using
-   the Well-Known Prefix (WKP, 64:FF9B::/96) to represent non-global
+   the Well-Known Prefix (WKP, 64:ff9B::/96) to represent non-global
    IPv4 addresses, such as those defined in [RFC1918] or listed in
    Section 3 of [RFC5735].
 
@@ -359,8 +359,8 @@ Table of Contents
 Acknowledgments
 
    The authors would like to thank Mohamed Boucadair, Nick Buraglio,
-   Lorenzo Colitti, Suresh Krishnan, Ted Lemon, Jordi Palet for their
-   helpful comments and suggestions on this document.
+   Lorenzo Colitti, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi
+   Palet for their helpful comments and suggestions on this document.
 
 Appendix: Example flow
 
@@ -380,7 +380,7 @@ Scenario A: Unmanaged CLAT to Managed PLAT Flow
 
    The local CLAT intercepts the IPv4 packet and synthesizes an IPv6
    destination address by prepending the Well-Known Prefix:
-   64:ff9b::10.1.2.3.
+   64:ff9B::10.1.2.3.
 
    CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST
    translate this packet by default, ignoring the non-global nature of
@@ -391,7 +391,7 @@ Scenario A: Unmanaged CLAT to Managed PLAT Flow
    gateway).
 
    PLAT Behavior: Upon receiving the packet destined for
-   64:ff9b::10.1.2.3, the PLAT evaluates its local configuration:
+   64:ff9B::10.1.2.3, the PLAT evaluates its local configuration:
 
    Permit: If the administrator has explicitly enabled translation for
    non-global addresses (or left the default translation behavior
@@ -406,7 +406,7 @@ Scenario B: Native IPv6 Host to Managed PLAT
 
    An IPv6-capable host (without a local CLAT) needs to communicate with
    the same internal service.  It acquires the destination address
-   64:ff9b::10.1.2.3 (e.g., via DNS64, local synthesis, or explicit
+   64:ff9B::10.1.2.3 (e.g., via DNS64, local synthesis, or explicit
    application configuration).
 
    The host transmits the IPv6 packet, which is routed to the PLAT.
