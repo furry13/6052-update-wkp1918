@@ -138,12 +138,17 @@ NEW TEXT:
 ===
 
 The Well-Known Prefix MAY be used to represent non-global IPv4 addresses, such
-as those defined in [RFC1918] or listed in Section 3 of [RFC5735]. Address
-translators MUST translate packets in which an address is composed of the
-Well-Known Prefix and a non-global IPv4 address unless configured otherwise.
-Implementations MAY choose not to translate such packets by default. Such
-implementation SHOULD have a configuration knob to enable translation for such
-packets.
+as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+
+Unmanaged client-side translators (CLATs) MUST translate packets in which an
+address is composed of the Well-Known Prefix and a non-global IPv4 address by
+default.
+
+Provider-side translators (PLATs) MUST translate such packets unless configured
+otherwise. Because administrators may rely on dropping these packets as an
+implicit security policy, PLAT implementations MAY choose not to translate such
+packets by default. However, such PLAT implementations SHOULD provide a
+configuration knob to enable translation for these packets.
 
 ===
 
@@ -164,25 +169,55 @@ There may be cases when it is desirable to ignore translation of private use
 IPv4 addressing due to internal policy or overlapping internal networks. It is
 important to note, however, that overlapping networks in IPv6 translated
 addresses are also overlapping in IPv4, and so behavior will be similar across
-protocols in the vast majority of use cases. In environments reliant on
+protocols in the vast majority of use cases. Environments reliant on
 [RFC7050] may be required to create configurations which address the filtering
 of private use IPv4 addressing if there is an expectation of compliance with
 the original section 3.1.
 
 ## Existing Behavior
 
-Testing of existing non-mobile CLAT implementations has shown that there is
-significant lack of support for compliance with the original test of [RFC6052]
-section 3.1, indicating the operational behaviors of devices utilizing a client
-side translator (CLAT) are aligned with the proposed text at present, and that
-compliance with the existing text will cause potential operational overhead as
-adjustments to current practice will be required.
+Testing of existing non-mobile CLAT implementations reveals a significant lack
+of compliance with the original requirements of [RFC6052] Section 3.1. This
+indicates that the operational behaviors of devices using a client-side
+translator (CLAT) are already aligned with the proposed changes. Enforcing
+compliance with the existing text would introduce operational overhead, as
+adjustments to current practices would be necessary.
 
-Further, where client side translation and local synthesis is used, it is
-currently not possible to employ more than one translation prefix, as none of
-the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
+Additionally, when client-side translation and local synthesis are employed, it
+is currently impossible to use more than one translation prefix. This
+limitation arises because widely deployed NAT64 Prefix Discovery mechanisms
+([RFC7050], [RFC8781]) do not provide a way to associate specific NAT64
+prefixes with subsets of IPv4 addresses for which they should be applied.
+
+--- ANOTHER OPTION ---
+
+Testing and operational experience with existing CLAT
+implementations (both mobile and non-mobile) have revealed highly inconsistent
+behavior regarding the original restriction in Section 3.1 of [RFC6052]. While
+some implementations strictly comply with the original requirement and drop
+packets destined for non-global IPv4 addresses, many other widely deployed
+CLATs completely ignore this restriction and translate the packets.
+
+This inconsistency creates significant operational challenges. Network
+operators are unable to predictably determine how unmanaged, client-side
+devices will handle traffic directed to internal IPv4 services. This
+unpredictable dropping or translating of packets on the client side severely
+complicates network design, security policies, and troubleshooting.
+
+By formalizing the requirement that unmanaged CLAT implementations MUST
+translate these packets by default (as updated in Section 3), and allowing PLAT devices to translate these packets, this document
+provides clear, standardized instructions to implementers. This resolves the
+current operational ambiguity, ensuring predictable behavior across all client
+ecosystems and aligning the standard with the practical realities of modern
+IPv6-mostly and IPv6-only deployments.
+
+Furthermore, where client-side translation and local synthesis are used, it is
+currently not feasible to employ more than one translation prefix, especially if different prefixes must be used for different IPv4 destinations. None of the
+widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
+
+--- END OTHER OPTION ---
 
 ## Use of Network Specific Prefix
 
@@ -219,7 +254,7 @@ non-global addresses is an intentional administrative action accompanied by a
 review of local security policies.
 
 Furthermore, administrators should not rely on the internal verification logic
-of the translator to enforce security boundaries. Instead, explicit polcies
+of the translator to enforce security boundaries. Instead, explicit policies
 such as access control lists (ACLs), firewall policies or NAT rules must be
 used to define authorized traffic patterns through the translator.
 
@@ -236,3 +271,53 @@ This document has no IANA actions.
 The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo
 Colitti, Suresh Krishnan, Ted Lemon, Jordi Palet for their helpful comments and
 suggestions on this document.
+
+# Appendix: Example flow
+{: numbered="false"}
+
+{ **Ed note**: Nick Buraglio has suggested that we include an example flow
+here. I think that this can be removed before publication, but it might be
+helpful to include fur discussion / during LC, etc}
+
+To illustrate the updated normative behavior, consider an IPv6-only network
+utilizing 464XLAT [RFC6877] where an administrator wishes to provide access to
+an internal, IPv4-only corporate service hosted at 10.1.2.3.
+
+## Scenario A: Unmanaged CLAT to Managed PLAT Flow
+{: numbered="false"}
+
+An IPv4-only application on an unmanaged client device generates an IPv4 packet
+destined for 10.1.2.3.
+
+The local CLAT intercepts the IPv4 packet and synthesizes an IPv6 destination
+address by prepending the Well-Known Prefix: 64:ff9b::10.1.2.3.
+
+CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST translate
+this packet by default, ignoring the non-global nature of the embedded IPv4
+address, and forward the resulting IPv6 packet to the network.
+
+The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
+
+PLAT Behavior: Upon receiving the packet destined for 64:ff9b::10.1.2.3, the
+PLAT evaluates its local configuration:
+
+Permit: If the administrator has explicitly enabled translation for non-global
+addresses (or left the default translation behavior enabled), the PLAT
+translates the packet back to IPv4 and forwards it to 10.1.2.3.
+
+Drop: If the administrator relies on a default-drop posture for non-global
+addresses or has explicitly configured an access control list (ACL) blocking
+this range, the PLAT drops the packet.
+
+## Scenario B: Native IPv6 Host to Managed PLAT
+{: numbered="false"}
+
+An IPv6-capable host (without a local CLAT) needs to communicate with the same
+internal service. It acquires the destination address 64:ff9b::10.1.2.3 (e.g.,
+via DNS64, local synthesis, or explicit application configuration).
+
+The host transmits the IPv6 packet, which is routed to the PLAT.
+
+PLAT Behavior: The PLAT applies the same configuration logic as in Scenario A.
+It MUST translate the packet to IPv4 and forward it to 10.1.2.3 unless local
+administrative policy configures it to drop the packet.
