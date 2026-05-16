@@ -176,21 +176,6 @@ the original section 3.1.
 
 ## Existing Behavior
 
-Testing of existing non-mobile CLAT implementations reveals a significant lack
-of compliance with the original requirements of [RFC6052] Section 3.1. This
-indicates that the operational behaviors of devices using a client-side
-translator (CLAT) are already aligned with the proposed changes. Enforcing
-compliance with the existing text would introduce operational overhead, as
-adjustments to current practices would be necessary.
-
-Additionally, when client-side translation and local synthesis are employed, it
-is currently impossible to use more than one translation prefix. This
-limitation arises because widely deployed NAT64 Prefix Discovery mechanisms
-([RFC7050], [RFC8781]) do not provide a way to associate specific NAT64
-prefixes with subsets of IPv4 addresses for which they should be applied.
-
---- ANOTHER OPTION ---
-
 Testing and operational experience with existing CLAT
 implementations (both mobile and non-mobile) have revealed highly inconsistent
 behavior regarding the original restriction in Section 3.1 of [RFC6052]. While
@@ -217,7 +202,6 @@ widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
---- END OTHER OPTION ---
 
 ## Use of Network Specific Prefix
 
