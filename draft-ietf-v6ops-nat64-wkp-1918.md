@@ -205,14 +205,14 @@ unpredictable dropping or translating of packets on the client side severely
 complicates network design, security policies, and troubleshooting.
 
 By formalizing the requirement that unmanaged CLAT implementations MUST
-translate these packets by default (as updated in Section 3), this document
+translate these packets by default (as updated in Section 3), and allowing PLAT devices to translate these packets, this document
 provides clear, standardized instructions to implementers. This resolves the
 current operational ambiguity, ensuring predictable behavior across all client
 ecosystems and aligning the standard with the practical realities of modern
 IPv6-mostly and IPv6-only deployments.
 
 Furthermore, where client-side translation and local synthesis are used, it is
-currently not possible to employ more than one translation prefix. None of the
+currently not feasible to employ more than one translation prefix, especially if different prefixes must be used for different IPv4 destinations. None of the
 widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
