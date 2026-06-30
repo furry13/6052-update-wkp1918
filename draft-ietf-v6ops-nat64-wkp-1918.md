@@ -5,6 +5,7 @@ category: std
 
 docname: draft-ietf-v6ops-nat64-wkp-1918-latest
 submissiontype: IETF
+update: rfc6052
 number:
 date:
 consensus: true
@@ -36,15 +37,18 @@ author:
 
 normative:
   RFC6052:
+  RFC1918:
 
 informative:
-  RFC1918:
   RFC5735:
   RFC6146:
   RFC6147:
+  RFC6598:
   RFC6877:
+  RFC6890:
   RFC7050:
   RFC8781:
+  RFC8190:
   RFC8215:
   EID5547:
     title: "Errata ID 5547: NAT64 Well-Known Prefix SHOULD NOT be used for Private Use IPv4 Addresses"
@@ -55,57 +59,62 @@ informative:
 
 --- abstract
 
-This document removes the requirement introduced in Section 3.1 of RFC6052 that
-the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be used to represent
-non-global IPv4 addresses, such as those defined in [RFC1918] or listed in
-Section 3 of [RFC5735]. The proposed change enables IPv6-only nodes to reach
-IPv4-only services with non-global addresses by leveraging the Well-Known
-Prefix.
+This document removes the requirement introduced in Section 3.1 of [RFC6052]
+that the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be used to represent
+non-globally reachable IPv4 addresses, such as those defined in [RFC1918] or
+listed in Section 2.2.2 of [RFC6890]. The proposed change enables IPv6-only
+nodes to reach IPv4-only services with specific non-globally reachable addresses
+by leveraging the Well-Known Prefix.
+
+This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
+Well-Known Prefix") to translate packets in which an address is composed of the
+Well-Known Prefix and specific non-globally reachable IPv4 addresses.
 
 --- middle
 
 # Introduction
 
 Section 3.1 of [RFC6052] prohibits IPv4/IPv6 translators from using the
-Well-Known Prefix (WKP, 64:ff9B::/96) to represent non-global IPv4 addresses,
-such as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+Well-Known Prefix (WKP, 64:ff9B::/96) to represent non-globally reachable IPv4
+addresses, such as those defined in [RFC1918] or listed in Section 2.2.2 of
+[RFC6890].
 
 This restriction is relatively straightforward to implement in DNS64 [RFC6147]:
 a DNS64 server simply avoids synthesizing an AAAA record using the WKP if the
-original A record contains a non-global IPv4 address. However, this requirement
-introduces significant operational challenges for systems that do not rely on
-DNS64 and instead use local synthesis such as CLAT (Customer-side Translator,
-[RFC6877]), or similar approaches.
+original A record contains a non-globally reachable IPv4 address. However, this
+requirement introduces significant operational challenges for systems that do
+not rely on DNS64 and instead use local synthesis such as CLAT (Customer-side
+Translator, [RFC6877]), or similar approaches.
 
 Enterprise and other closed networks often require IPv6-only nodes to
-communicate with both internal (e.g., using RFC1918 addresses) and external
-(Internet) IPv4-only destinations. The restriction in Section 3.1 of RFC6052
+communicate with both internal (e.g., using [RFC1918] addresses) and external
+(Internet) IPv4-only destinations. The restriction in Section 3.1 of [RFC6052]
 prevents such networks from utilizing the WKP and, consequently, from relying
 on public DNS64 servers (e.g. forwarding requests for external zones to public
 DNS64) which utilize the WKP in order to maximize compatibility.
 
 Using two NAT64 prefixes — the WKP for Internet destinations and a
-Network-Specific Prefix (NSP) for non-global IPv4 addresses — is not a feasible
-solution for nodes performing local synthesis or running CLAT. None of the
-widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
-provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
-for which it should be used.
+Network-Specific Prefix (NSP) for non-globally reachable IPv4 addresses — is
+not a feasible solution for nodes performing local synthesis or running CLAT.
+None of the widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050],
+[RFC8781]) provide a method to map a specific NAT64 prefix to the subset of
+IPv4 addresses for which it should be used.
 
 According to Section 3 of [RFC7050], a node must use all learned prefixes when
 performing local IPv6 address synthesis. Consequently, if a node discovers both
-the WKP and the NSP, it will use both prefixes to represent global IPv4
-addresses. This duplication significantly complicates security policies,
+the WKP and the NSP, it will use both prefixes to represent globally reachable
+IPv4 addresses. This duplication significantly complicates security policies,
 troubleshooting, and other operational aspects of the network.
 
-Prohibiting the WKP from representing non-global IPv4 addresses offers no
-substantial benefit to IPv6-only or IPv6-mostly deployments. Simultaneously, it
+Prohibiting the WKP from representing non-globally reachable IPv4 addresses
+offers no substantial benefit to IPv6-only or IPv6-mostly deployments. It also
 substantially complicates network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
-(including the WKP) to represent all IPv4 addresses, regardless of their global
-or non-global status. This simplification would greatly improve the utility of
-the WKP in enterprise networks.
+(including the WKP) to represent all IPv4 addresses, regardless of their
+globally reachable or non-globally reachable status. This simplification would
+greatly improve the utility of the WKP in enterprise networks.
 
 
 # Conventions and Definitions
@@ -114,7 +123,7 @@ the WKP in enterprise networks.
 
 ## Terminology
 
-This document reuses the Terminology section of [RFC6052].
+This document reuses the Terminology section of [RFC6052] and [RFC8190].
 
 
 # RFC6052 Update
@@ -129,7 +138,7 @@ OLD TEXT:
 The Well-Known Prefix MUST NOT be used to represent non-global IPv4 addresses,
 such as those defined in [RFC1918] or listed in Section 3 of [RFC5735]. Address
 translators MUST NOT translate packets in which an address is composed of the
-Well-Known Prefix and a non- global IPv4 address; they MUST drop these packets.
+Well-Known Prefix and a non-global IPv4 address; they MUST drop these packets.
 
 ===
 
@@ -137,12 +146,12 @@ NEW TEXT:
 
 ===
 
-The Well-Known Prefix MAY be used to represent non-global IPv4 addresses, such
-as those defined in [RFC1918] or listed in Section 3 of [RFC5735].
+The Well-Known Prefix MAY be used to represent the non-global IPv4 addresses
+listed in [RFC1918] and [RFC6598].
 
 Unmanaged client-side translators (CLATs) MUST translate packets in which an
-address is composed of the Well-Known Prefix and a non-global IPv4 address by
-default.
+address is composed of the Well-Known Prefix and these non-globally reachable
+IPv4 address by default.
 
 Provider-side translators (PLATs) MUST translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
@@ -165,7 +174,7 @@ errata.
 
 # Operational Considerations
 
-There may be cases when it is desirable to ignore translation of private use
+There may be cases in which it is desirable to ignore translation of private use
 IPv4 addressing due to internal policy or overlapping internal networks. It is
 important to note, however, that overlapping networks in IPv6 translated
 addresses are also overlapping in IPv4, and so behavior will be similar across
@@ -180,7 +189,7 @@ Testing and operational experience with existing CLAT
 implementations (both mobile and non-mobile) have revealed highly inconsistent
 behavior regarding the original restriction in Section 3.1 of [RFC6052]. While
 some implementations strictly comply with the original requirement and drop
-packets destined for non-global IPv4 addresses, many other widely deployed
+packets destined for non-globally reachable IPv4 addresses, many other widely deployed
 CLATs completely ignore this restriction and translate the packets.
 
 This inconsistency creates significant operational challenges. Network
@@ -190,14 +199,16 @@ unpredictable dropping or translating of packets on the client side severely
 complicates network design, security policies, and troubleshooting.
 
 By formalizing the requirement that unmanaged CLAT implementations MUST
-translate these packets by default (as updated in Section 3), and allowing PLAT devices to translate these packets, this document
-provides clear, standardized instructions to implementers. This resolves the
-current operational ambiguity, ensuring predictable behavior across all client
-ecosystems and aligning the standard with the practical realities of modern
-IPv6-mostly and IPv6-only deployments.
+translate these packets by default (as updated in Section 3), and allowing PLAT
+devices to translate these packets, this document provides clear, standardized
+instructions to implementers. This resolves the current operational ambiguity,
+ensuring predictable behavior across all client ecosystems and aligning the
+standard with the practical realities of modern IPv6-mostly and IPv6-only
+deployments.
 
 Furthermore, where client-side translation and local synthesis are used, it is
-currently not feasible to employ more than one translation prefix, especially if different prefixes must be used for different IPv4 destinations. None of the
+currently not feasible to employ more than one translation prefix, especially
+if different prefixes must be used for different IPv4 destinations. None of the
 widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
@@ -207,7 +218,7 @@ for which it should be used.
 
 Use of a network specific prefix such as provided by [RFC8215] does not
 preclude the removal of section 3.1 as a MUST requirement. If a network employs
-a network specific prefix the behavior of synthesizing a private use IPv4
+a network specific prefix, the behavior of synthesizing a private use IPv4
 address is not prevented by standard. The use of a network specific prefix
 implies the existence of a local mechanism for synthesizing IPv6 addresses
 based on that specific prefix, and thereby rules out use of a public DNS64
@@ -218,9 +229,9 @@ use the WKP to maximize compatibility.
 # Security Considerations
 
 Legitimizing packets where the IPv6 destination address is composed of the WKP
-and a non-global IPv4 address does not, inherently, introduce new security
+and a non-globally reachable IPv4 address does not, inherently, introduce new security
 considerations. Whether a specific traffic flow between an IPv6-only source and
-a non-global IPv4 destination (or any flow to a non-global IPv4 destination) is
+a non-globally reachable IPv4 destination (or any flow to a non-globally reachable IPv4 destination) is
 legitimate is a matter of local network topology and administrative policy.
 However, existing NAT64 implementations compliant with RFC 6052 are expected to
 drop such packets. Administrators may be relying on this implicit filtering as
@@ -234,7 +245,7 @@ prohibited by the translator's default logic. To mitigate this risk, existing
 managed NAT64 implementations compliant with RFC 6052 SHOULD NOT alter their
 default dropping behavior. Instead, they SHOULD provide a configuration knob to
 enable this functionality, ensuring that the transition to supporting
-non-global addresses is an intentional administrative action accompanied by a
+non-globally reachable addresses is an intentional administrative action accompanied by a
 review of local security policies.
 
 Furthermore, administrators should not rely on the internal verification logic
@@ -259,9 +270,6 @@ helpful comments and suggestions on this document.
 # Appendix: Example flow
 {: numbered="false"}
 
-{ **Ed note**: Nick Buraglio has suggested that we include an example flow
-here. I think that this can be removed before publication, but it might be
-helpful to include fur discussion / during LC, etc}
 
 To illustrate the updated normative behavior, consider an IPv6-only network
 utilizing 464XLAT [RFC6877] where an administrator wishes to provide access to
@@ -277,7 +285,7 @@ The local CLAT intercepts the IPv4 packet and synthesizes an IPv6 destination
 address by prepending the Well-Known Prefix: 64:ff9B::10.1.2.3.
 
 CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST translate
-this packet by default, ignoring the non-global nature of the embedded IPv4
+this packet by default, ignoring the non-globally reachable nature of the embedded IPv4
 address, and forward the resulting IPv6 packet to the network.
 
 The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
@@ -285,11 +293,11 @@ The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
 PLAT Behavior: Upon receiving the packet destined for 64:ff9B::10.1.2.3, the
 PLAT evaluates its local configuration:
 
-Permit: If the administrator has explicitly enabled translation for non-global
+Permit: If the administrator has explicitly enabled translation for non-globally reachable
 addresses (or left the default translation behavior enabled), the PLAT
 translates the packet back to IPv4 and forwards it to 10.1.2.3.
 
-Drop: If the administrator relies on a default-drop posture for non-global
+Drop: If the administrator relies on a default-drop posture for non-globally reachable
 addresses or has explicitly configured an access control list (ACL) blocking
 this range, the PLAT drops the packet.
 
