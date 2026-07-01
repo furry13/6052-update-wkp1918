@@ -186,12 +186,12 @@ the original section 3.1.
 
 ## Existing Behavior
 
-Testing and operational experience with existing CLAT
-implementations (both mobile and non-mobile) have revealed highly inconsistent
-behavior regarding the original restriction in Section 3.1 of [RFC6052]. While
-some implementations strictly comply with the original requirement and drop
-packets destined for non-globally reachable IPv4 addresses, many other widely deployed
-CLATs completely ignore this restriction and translate the packets.
+Testing and operational experience with existing CLAT implementations (both
+mobile and non-mobile) have revealed highly inconsistent behavior regarding the
+original restriction in Section 3.1 of [RFC6052]. While some implementations
+strictly comply with the original requirement and drop packets destined for
+non-globally reachable IPv4 addresses, many other widely deployed CLATs
+completely ignore this restriction and translate the packets.
 
 This inconsistency creates significant operational challenges. Network
 operators are unable to predictably determine how unmanaged, client-side
@@ -230,15 +230,16 @@ use the WKP to maximize compatibility.
 # Security Considerations
 
 Legitimizing packets where the IPv6 destination address is composed of the WKP
-and a non-globally reachable IPv4 address does not, inherently, introduce new security
-considerations. Whether a specific traffic flow between an IPv6-only source and
-a non-globally reachable IPv4 destination (or any flow to a non-globally reachable IPv4 destination) is
-legitimate is a matter of local network topology and administrative policy.
-However, existing NAT64 implementations compliant with RFC 6052 are expected to
-drop such packets. Administrators may be relying on this implicit filtering as
-a built-in security mechanism to prevent unauthorized access to private IPv4
-infrastructure, rather than implementing explicit security policies. This
-reliance is particularly prevalent in managed NAT64 (PLAT) environments.
+and a non-globally reachable IPv4 address does not, inherently, introduce new
+security considerations. Whether a specific traffic flow between an IPv6-only
+source and a non-globally reachable IPv4 destination (or any flow to a
+non-globally reachable IPv4 destination) is legitimate is a matter of local
+network topology and administrative policy. However, existing NAT64
+implementations compliant with RFC 6052 are expected to drop such packets.
+Administrators may be relying on this implicit filtering as a built-in security
+mechanism to prevent unauthorized access to private IPv4 infrastructure, rather
+than implementing explicit security policies. This reliance is particularly
+prevalent in managed NAT64 (PLAT) environments.
 
 Modifying the recommended behavior to allow such address compositions may, in
 the absence of explicit filtering, enable traffic flows that were previously
@@ -246,8 +247,8 @@ prohibited by the translator's default logic. To mitigate this risk, existing
 managed NAT64 implementations compliant with RFC 6052 SHOULD NOT alter their
 default dropping behavior. Instead, they SHOULD provide a configuration knob to
 enable this functionality, ensuring that the transition to supporting
-non-globally reachable addresses is an intentional administrative action accompanied by a
-review of local security policies.
+non-globally reachable addresses is an intentional administrative action
+accompanied by a review of local security policies.
 
 Furthermore, administrators should not rely on the internal verification logic
 of the translator to enforce security boundaries. Instead, explicit policies
@@ -265,8 +266,8 @@ This document has no IANA actions.
 {:numbered="false"}
 
 The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo
-Colitti, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi Palet for their
-helpful comments and suggestions on this document.
+Colitti, Brian Carpenter, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi
+Palet for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
@@ -286,21 +287,22 @@ The local CLAT intercepts the IPv4 packet and synthesizes an IPv6 destination
 address by prepending the Well-Known Prefix: 64:ff9B::10.1.2.3.
 
 CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST translate
-this packet by default, ignoring the non-globally reachable nature of the embedded IPv4
-address, and forward the resulting IPv6 packet to the network.
+this packet by default, ignoring the non-globally reachable nature of the
+embedded IPv4 address, and forward the resulting IPv6 packet to the network.
 
 The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
 
 PLAT Behavior: Upon receiving the packet destined for 64:ff9B::10.1.2.3, the
 PLAT evaluates its local configuration:
 
-Permit: If the administrator has explicitly enabled translation for non-globally reachable
-addresses (or left the default translation behavior enabled), the PLAT
-translates the packet back to IPv4 and forwards it to 10.1.2.3.
+Permit: If the administrator has explicitly enabled translation for
+non-globally reachable addresses (or left the default translation behavior
+enabled), the PLAT translates the packet back to IPv4 and forwards it to
+10.1.2.3.
 
-Drop: If the administrator relies on a default-drop posture for non-globally reachable
-addresses or has explicitly configured an access control list (ACL) blocking
-this range, the PLAT drops the packet.
+Drop: If the administrator relies on a default-drop posture for non-globally
+reachable addresses or has explicitly configured an access control list (ACL)
+blocking this range, the PLAT drops the packet.
 
 ## Scenario B: Native IPv6 Host to Managed PLAT
 {: numbered="false"}
