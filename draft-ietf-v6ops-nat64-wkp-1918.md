@@ -59,7 +59,7 @@ informative:
 
 --- abstract
 
-This document removes the requirement introduced in Section 3.1 of [RFC6052]
+This document modifies the requirement introduced in Section 3.1 of [RFC6052]
 that the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be used to represent
 non-globally reachable IPv4 addresses, such as those defined in [RFC1918] or
 listed in Section 2.2.2 of [RFC6890]. The proposed change enables IPv6-only
@@ -67,8 +67,9 @@ nodes to reach IPv4-only services with specific non-globally reachable addresses
 by leveraging the Well-Known Prefix.
 
 This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
-Well-Known Prefix") to translate packets in which an address is composed of the
-Well-Known Prefix and specific non-globally reachable IPv4 addresses.
+Well-Known Prefix") to allow packets in which an address is composed of the
+Well-Known Prefix and specific non-globally reachable IPv4 addresses to be
+translated.
 
 --- middle
 
