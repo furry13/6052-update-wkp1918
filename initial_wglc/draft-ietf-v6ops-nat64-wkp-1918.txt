@@ -5,7 +5,7 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Intended status: Standards Track                             Google, LLC
-Expires: 1 January 2027                                     30 June 2026
+Expires: 2 January 2027                                      1 July 2026
 
 
                                NAT64 WKP
@@ -13,7 +13,7 @@ Expires: 1 January 2027                                     30 June 2026
 
 Abstract
 
-   This document removes the requirement introduced in Section 3.1 of
+   This document modifies the requirement introduced in Section 3.1 of
    [RFC6052] that the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be
    used to represent non-globally reachable IPv4 addresses, such as
    those defined in [RFC1918] or listed in Section 2.2.2 of [RFC6890].
@@ -22,9 +22,9 @@ Abstract
    the Well-Known Prefix.
 
    This document updates Section 3.1 of [RFC6052] ("Restrictions on the
-   Use of the Well-Known Prefix") to translate packets in which an
-   address is composed of the Well-Known Prefix and specific non-
-   globally reachable IPv4 addresses.
+   Use of the Well-Known Prefix") to allow packets in which an address
+   is composed of the Well-Known Prefix and specific non-globally
+   reachable IPv4 addresses to be translated.
 
 About This Document
 
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 January 2027.
+   This Internet-Draft will expire on 2 January 2027.
 
 Copyright Notice
 
