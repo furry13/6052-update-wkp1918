@@ -4,8 +4,9 @@
 
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
-Intended status: Standards Track                             Google, LLC
-Expires: 2 January 2027                                      1 July 2026
+Updates: rfc6052 (if approved)                               Google, LLC
+Intended status: Standards Track                             1 July 2026
+Expires: 2 January 2027
 
 
                                NAT64 WKP
