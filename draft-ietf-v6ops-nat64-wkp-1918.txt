@@ -383,8 +383,9 @@ Table of Contents
 Acknowledgments
 
    The authors would like to thank Mohamed Boucadair, Nick Buraglio,
-   Lorenzo Colitti, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi
-   Palet for their helpful comments and suggestions on this document.
+   Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Suresh Krishnan,
+   Ted Lemon, Jordi Palet for their helpful comments and suggestions on
+   this document.
 
 Appendix: Example flow
 
