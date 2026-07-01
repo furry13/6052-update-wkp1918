@@ -5,7 +5,7 @@ category: std
 
 docname: draft-ietf-v6ops-nat64-wkp-1918-latest
 submissiontype: IETF
-update: rfc6052
+updates: rfc6052
 number:
 date:
 consensus: true
