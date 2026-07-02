@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-30T02:28:24.473885+00:00",
+  "timestamp": "2026-07-02T02:13:59.962981+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -286,6 +286,103 @@
               "body": "```suggestion\ncurrently not feasible to employ more than one translation prefix, especially if different prefixes must be used for different IPv4 destinations. None of the\n```",
               "createdAt": "2026-05-16T07:55:36Z",
               "updatedAt": "2026-05-16T07:55:36Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOQNM3Es7sSxFp",
+      "title": "Addess initial WGLC comments (Brian, Jordi). Please see proposed emai\u2026",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/5",
+      "state": "MERGED",
+      "author": "wkumari",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "furry13"
+      ],
+      "labels": [],
+      "body": "This addresses Brian and Jordi's initial WGLC comments. Please also see the proposed email edits.",
+      "createdAt": "2026-06-30T15:28:32Z",
+      "updatedAt": "2026-07-01T15:15:10Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "316b052dda7e86085220f0e302f963ebddadbb1e",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "initial_wglc",
+      "headRefOid": "3429538cb0ffaa7d8fa2ac72e70e4d2bb014a788",
+      "closedAt": "2026-07-01T15:14:51Z",
+      "mergedAt": "2026-07-01T15:14:51Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "1ea315eaf6e96af33de4605c27e8e4171f5672a5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABEqRGQQ",
+          "commit": {
+            "abbreviatedOid": "e7d8b26"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "I've made two minor suggestions, feel free to ignore, they are just tweaks.\n\nAlso, may I ask you to add Brian to the Ack section? (I hate dealing with merging conflicts, so not doing it myself..)\n\nThank you for dealing with it while I'm enjoying my time off!!",
+          "createdAt": "2026-07-01T09:46:06Z",
+          "updatedAt": "2026-07-01T09:56:11Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\nThis document modifies the requirement introduced in Section 3.1 of [RFC6052]\n```",
+              "createdAt": "2026-07-01T09:46:06Z",
+              "updatedAt": "2026-07-01T09:56:11Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "```suggestion\nWell-Known Prefix\") to allow packets in which an address is composed of the\nWell-Known Prefix and specific non-globally reachable IPv4 addresses to be translated\n```",
+              "createdAt": "2026-07-01T09:48:46Z",
+              "updatedAt": "2026-07-01T09:56:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABEsp7Qw",
+          "commit": {
+            "abbreviatedOid": "e7d8b26"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-01T14:57:16Z",
+          "updatedAt": "2026-07-01T14:57:16Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "Done. Thank you.",
+              "createdAt": "2026-07-01T14:57:16Z",
+              "updatedAt": "2026-07-01T14:57:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABEsqmDA",
+          "commit": {
+            "abbreviatedOid": "e7d8b26"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-01T14:58:38Z",
+          "updatedAt": "2026-07-01T14:58:39Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Thank you, done.",
+              "createdAt": "2026-07-01T14:58:38Z",
+              "updatedAt": "2026-07-01T14:58:39Z"
             }
           ]
         }
