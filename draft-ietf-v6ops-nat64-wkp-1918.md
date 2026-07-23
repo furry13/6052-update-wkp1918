@@ -5,7 +5,7 @@ category: std
 
 docname: draft-ietf-v6ops-nat64-wkp-1918-latest
 submissiontype: IETF
-updates: rfc6052
+updates: 6052
 number:
 date:
 consensus: true
@@ -59,14 +59,14 @@ informative:
 
 --- abstract
 
-This document modifies the requirement introduced in Section 3.1 of [RFC6052]
-that the NAT64 Well-Known Prefix 64:ff9B::/96 MUST NOT be used to represent
-non-globally reachable IPv4 addresses, such as those defined in [RFC1918] or
-listed in Section 2.2.2 of [RFC6890]. The proposed change enables IPv6-only
+This document modifies the requirement introduced in Section 3.1 of RFC6052
+that the NAT64 Well-Known Prefix 64:ff9b::/96 MUST NOT be used to represent
+non-globally reachable IPv4 addresses, such as those defined in RFC1918 or
+listed in Section 2.2.2 of RFC6890. The proposed change enables IPv6-only
 nodes to reach IPv4-only services with specific non-globally reachable addresses
 by leveraging the Well-Known Prefix.
 
-This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
+This document updates Section 3.1 of RFC6052 ("Restrictions on the Use of the
 Well-Known Prefix") to allow packets in which an address is composed of the
 Well-Known Prefix and specific non-globally reachable IPv4 addresses to be
 translated.
@@ -76,7 +76,7 @@ translated.
 # Introduction
 
 Section 3.1 of [RFC6052] prohibits IPv4/IPv6 translators from using the
-Well-Known Prefix (WKP, 64:ff9B::/96) to represent non-globally reachable IPv4
+Well-Known Prefix (WKP, 64:ff9b::/96) to represent non-globally reachable IPv4
 addresses, such as those defined in [RFC1918] or listed in Section 2.2.2 of
 [RFC6890].
 
@@ -157,12 +157,12 @@ IPv4 address by default.
 Provider-side translators (PLATs) MUST translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
 implicit security policy, PLAT implementations MAY choose not to translate such
-packets by default. However, such PLAT implementations SHOULD provide a
+packets by default. However, such PLAT implementations MUST provide a
 configuration knob to enable translation for these packets.
 
 ===
 
-As noted in Errata 5547 ([eid5547]):
+As noted in Erratum 5547 ([eid5547]):
 
 ```
 IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
@@ -267,7 +267,7 @@ This document has no IANA actions.
 
 The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo
 Colitti, Brian Carpenter, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi
-Palet for their helpful comments and suggestions on this document.
+Palet and Wes Hardaker for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
@@ -284,7 +284,7 @@ An IPv4-only application on an unmanaged client device generates an IPv4 packet
 destined for 10.1.2.3.
 
 The local CLAT intercepts the IPv4 packet and synthesizes an IPv6 destination
-address by prepending the Well-Known Prefix: 64:ff9B::10.1.2.3.
+address by prepending the Well-Known Prefix: 64:ff9b::10.1.2.3.
 
 CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST translate
 this packet by default, ignoring the non-globally reachable nature of the
@@ -292,7 +292,7 @@ embedded IPv4 address, and forward the resulting IPv6 packet to the network.
 
 The IPv6 network routes the packet to the managed PLAT (NAT64 gateway).
 
-PLAT Behavior: Upon receiving the packet destined for 64:ff9B::10.1.2.3, the
+PLAT Behavior: Upon receiving the packet destined for 64:ff9b::10.1.2.3, the
 PLAT evaluates its local configuration:
 
 Permit: If the administrator has explicitly enabled translation for
@@ -308,7 +308,7 @@ blocking this range, the PLAT drops the packet.
 {: numbered="false"}
 
 An IPv6-capable host (without a local CLAT) needs to communicate with the same
-internal service. It acquires the destination address 64:ff9B::10.1.2.3 (e.g.,
+internal service. It acquires the destination address 64:ff9b::10.1.2.3 (e.g.,
 via DNS64, local synthesis, or explicit application configuration).
 
 The host transmits the IPv6 packet, which is routed to the PLAT.
@@ -316,3 +316,24 @@ The host transmits the IPv6 packet, which is routed to the PLAT.
 PLAT Behavior: The PLAT applies the same configuration logic as in Scenario A.
 It MUST translate the packet to IPv4 and forward it to 10.1.2.3 unless local
 administrative policy configures it to drop the packet.
+
+## Scenario C: CLAT flows avoiding the PLAT
+{: numbered="false"}
+
+An IPv4-only application on an unmanaged client device generates an
+IPv4 packet destined for 10.1.2.3.
+
+The local CLAT intercepts the IPv4 packet and synthesizes an IPv6
+destination address by prepending the Well-Known Prefix:
+64:ff9b::10.1.2.3.
+
+CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST
+translate this packet by default, ignoring the non-globally reachable
+nature of the embedded IPv4 address, and forward the resulting IPv6
+packet to the network.
+
+The network administrator created the relevant rules to avoid translation
+as the destination interface 10.1.2.3 is also configured as dual-stack with
+the address 64:ff9b::10.1.2.3.
+
+The IPv6 network more specific routes forward the packet to the IPv6 destination.
