@@ -219,7 +219,7 @@ provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
 
-## Use of Network Specific Prefix
+## Use of Network Specific or Local-Use Prefix
 
 Use of a network specific prefix or the Local-Use one
 (64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section 3.1
