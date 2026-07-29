@@ -1279,7 +1279,7 @@ networks, it is desirable to allow translators to use a single prefix
 (including the WKP) to represent IPv4 addresses regardless of their
 globally reachable or non-globally reachable status.
 In particular, allowing translators to use the WKP to represent
-private IPv4 addresses (<span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span>, <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) would greatly improve
+private IPv4 addresses (<span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span>, <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) will greatly improve
 the utility of the WKP in enterprise networks.<a href="#section-1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1390,11 +1390,11 @@ for which it should be used.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 (64:ff9b:1::/48, <span>[<a href="#RFC8215" class="cite xref">RFC8215</a>]</span>) does not preclude the removal of section 3.1
 as a <span class="bcp14">MUST</span> requirement. If a network employs
 a network specific prefix or 64:ff9b:1::/48, the behavior of synthesizing
-a private use IPv4 address is not prevented by standard.
+a private use IPv4 address is not prohibited by <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>.
 The changes proposed in this document are not impacting networks using NSPs
 or the Local-Use prefix.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">As descussed in <a href="#introduction" class="auto internal xref">Section 1</a>, using of the NSP or
-the Local-Use prefix usually  rules out use of a public DNS64
+<p id="section-4.2-2">As discussed in <a href="#introduction" class="auto internal xref">Section 1</a>, utilizing the NSP or
+the Local-Use prefix usually prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 </section>
