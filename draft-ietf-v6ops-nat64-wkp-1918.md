@@ -1,5 +1,5 @@
 ---
-title: "NAT64 WKP"
+title: "Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses"
 abbrev: "nat64-wkp-1918"
 category: std
 
@@ -60,10 +60,11 @@ informative:
 --- abstract
 
 This document modifies the requirement introduced in Section 3.1 of RFC6052
-that the NAT64 Well-Known Prefix 64:ff9b::/96 MUST NOT be used to represent
-non-globally reachable IPv4 addresses, such as those defined in RFC1918 or
-listed in Section 2.2.2 of RFC6890. The proposed change enables IPv6-only
-nodes to reach IPv4-only services with specific non-globally reachable addresses
+that IPv4/IPv6 Translators MUST NOT use the Well-Known Prefix 64:ff9b::/96
+to represent non-globally reachable IPv4 addresses, such as those defined
+in RFC1918 or listed in Section 2.2.2 of RFC6890.
+The proposed change enables IPv6-only nodes to reach IPv4-only services
+with specific non-globally reachable addresses
 by leveraging the Well-Known Prefix.
 
 This document updates Section 3.1 of RFC6052 ("Restrictions on the Use of the
@@ -220,12 +221,16 @@ for which it should be used.
 
 ## Use of Network Specific Prefix
 
-Use of a network specific prefix such as provided by [RFC8215] does not
-preclude the removal of section 3.1 as a MUST requirement. If a network employs
-a network specific prefix, the behavior of synthesizing a private use IPv4
-address is not prevented by standard. The use of a network specific prefix
-implies the existence of a local mechanism for synthesizing IPv6 addresses
-based on that specific prefix, and thereby rules out use of a public DNS64
+Use of a network specific prefix or the Local-Use one
+(64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section 3.1
+as a MUST requirement. If a network employs
+a network specific prefix or 64:ff9b:1::/48, the behavior of synthesizing
+a private use IPv4 address is not prevented by standard.
+The changes proposed in this document are not impacting networks using NSPs
+or the Local-Use prefix.
+
+As descussed in [Introduction](#introduction), using of the NSP or
+the Local-Use prefix usually  rules out use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
