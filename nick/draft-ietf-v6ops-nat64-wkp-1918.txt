@@ -81,7 +81,7 @@ Table of Contents
    3.  RFC6052 Update
    4.  Operational Considerations
      4.1.  Existing Behavior
-     4.2.  Use of Network Specific Prefix
+     4.2.  Use of Network Specific or Local-Use Prefix
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -259,7 +259,7 @@ Table of Contents
    to map a specific NAT64 prefix to a subset of IPv4 addresses for
    which it should be used.
 
-4.2.  Use of Network Specific Prefix
+4.2.  Use of Network Specific or Local-Use Prefix
 
    Use of a network specific prefix or the Local-Use one
    (64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section
