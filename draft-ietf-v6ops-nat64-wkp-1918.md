@@ -36,14 +36,14 @@ author:
     email: furry13@gmail.com
 
 normative:
-  RFC6052:
   RFC1918:
+  RFC6052:
+  RFC6598:
 
 informative:
   RFC5735:
   RFC6146:
   RFC6147:
-  RFC6598:
   RFC6877:
   RFC6890:
   RFC7050:
@@ -107,15 +107,20 @@ the WKP and the NSP, it will use both prefixes to represent globally reachable
 IPv4 addresses. This duplication significantly complicates security policies,
 troubleshooting, and other operational aspects of the network.
 
-Prohibiting the WKP from representing non-globally reachable IPv4 addresses
-offers no substantial benefit to IPv6-only or IPv6-mostly deployments. It also
-substantially complicates network design and the behavior of nodes.
+Combining the WKP with the Local-Use prefix (64:ff9b:1::/48, [RFC8215]) is also
+not feasible, as it introduces the same challenges as using the WKP
+with the NSP.
+
+Prohibiting the WKP from representing private IPv4 addresses ([RFC1918], [RFC6598]) offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
+It also substantially complicates network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
-(including the WKP) to represent all IPv4 addresses, regardless of their
-globally reachable or non-globally reachable status. This simplification would
-greatly improve the utility of the WKP in enterprise networks.
+(including the WKP) to represent IPv4 addresses regardless of their
+globally reachable or non-globally reachable status.
+In particular, allowing translators to use the WKP to represent
+private IPv4 addresses ([RFC1918], [RFC6598]) would greatly improve
+the utility of the WKP in enterprise networks.
 
 
 # Conventions and Definitions
@@ -176,13 +181,11 @@ errata.
 # Operational Considerations
 
 There may be cases in which it is desirable to ignore translation of private use
-IPv4 addressing due to internal policy or overlapping internal networks. It is
-important to note, however, that overlapping networks in IPv6 translated
-addresses are also overlapping in IPv4, and so behavior will be similar across
-protocols in the vast majority of use cases. Environments reliant on
-[RFC7050] may be required to create configurations which address the filtering
-of private use IPv4 addressing if there is an expectation of compliance with
-the original section 3.1.
+IPv4 addressing due to internal policy or overlapping internal networks.
+In such envinronments the operators need to create configurations
+which address the filtering of private use IPv4 addressing
+if there is an expectation of compliance with
+the original section 3.1 of [RFC6052].
 
 ## Existing Behavior
 
@@ -265,9 +268,7 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mohamed Boucadair, Nick Buraglio, Lorenzo
-Colitti, Brian Carpenter, Goetz Goerisch, Suresh Krishnan, Ted Lemon, Jordi
-Palet and Wes Hardaker for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon and Jordi Palet for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
