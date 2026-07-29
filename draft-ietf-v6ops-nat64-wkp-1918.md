@@ -120,7 +120,7 @@ networks, it is desirable to allow translators to use a single prefix
 (including the WKP) to represent IPv4 addresses regardless of their
 globally reachable or non-globally reachable status.
 In particular, allowing translators to use the WKP to represent
-private IPv4 addresses ([RFC1918], [RFC6598]) would greatly improve
+private IPv4 addresses ([RFC1918], [RFC6598]) will greatly improve
 the utility of the WKP in enterprise networks.
 
 
@@ -225,12 +225,12 @@ Use of a network specific prefix or the Local-Use one
 (64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section 3.1
 as a MUST requirement. If a network employs
 a network specific prefix or 64:ff9b:1::/48, the behavior of synthesizing
-a private use IPv4 address is not prevented by standard.
+a private use IPv4 address is not prohibited by [RFC6052].
 The changes proposed in this document are not impacting networks using NSPs
 or the Local-Use prefix.
 
-As descussed in [Introduction](#introduction), using of the NSP or
-the Local-Use prefix usually  rules out use of a public DNS64
+As discussed in [Introduction](#introduction), utilizing the NSP or
+the Local-Use prefix usually prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
