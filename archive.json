@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-28T01:41:55.941471+00:00",
+  "timestamp": "2026-07-30T01:25:47.291368+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -387,6 +387,193 @@
           ]
         }
       ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOQNM3Es74DH2E",
+      "title": "Addressing some of Nick's comments and polishing the text",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/6",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "- Fixing the title\r\n- Adding RFC6598 as a Normative, and sort the RFC numbers\r\n- Removing 'NAT64' from the 1st paragraph in the Intro and rephrasing the text to indicate we are talking about IPv4/IPv6 translators\r\n- Mentioning 64:ff9b:1::/48, [RFC8215] in the Intro, saying it's basically equal to the NSP\r\n- rephrasing the Intro text to make it explicit that we are only suggesting to allow the private addresses (RFC1918 etc), not ALL special addresses \r\n- I'm as confused as Nick is by the first paragraph in the Operational Considerations. Removing some text as I'm not convinced it's relevant\r\n- Rephrasing the NSP section of the Operational consoidertations to cover both NSP and 64:ff9b:1::/48 (which is not, strictly speaking, NSP) - and updating the section title\r\n- Updating the Ack section to keep names in the alphabetical order.",
+      "createdAt": "2026-07-29T14:47:03Z",
+      "updatedAt": "2026-07-29T16:03:39Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "6da18d59fb250f424a305ef834a7269d0e948628",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "nick",
+      "headRefOid": "85cfd16d5a7d521c73014bf9dc2d37d62d5436da",
+      "closedAt": "2026-07-29T16:03:38Z",
+      "mergedAt": "2026-07-29T16:03:38Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "a1632f09bff8df390e6a1bdf71af7cb33ec6d4b6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrCD3w",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thank you. I suggested some editorial changes, but in general looks good.\n\n",
+          "createdAt": "2026-07-29T15:09:41Z",
+          "updatedAt": "2026-07-29T15:15:18Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "s/would greatly/will greatly/",
+              "createdAt": "2026-07-29T15:09:42Z",
+              "updatedAt": "2026-07-29T15:15:18Z"
+            },
+            {
+              "originalPosition": 97,
+              "body": "by this standard (?)",
+              "createdAt": "2026-07-29T15:10:10Z",
+              "updatedAt": "2026-07-29T15:15:18Z"
+            },
+            {
+              "originalPosition": 107,
+              "body": "s/As descussed in /As discussed in the/\n/using of the NSP or the Local-Use prefix usually  rules out use/using the NSP or the Local-Use prefix usually rules out/",
+              "createdAt": "2026-07-29T15:14:12Z",
+              "updatedAt": "2026-07-29T15:15:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrI3bQ",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-29T15:19:34Z",
+          "updatedAt": "2026-07-29T15:19:34Z",
+          "comments": [
+            {
+              "originalPosition": 97,
+              "body": "I've changed it to 'is not prohibited by [RFC6052]'.",
+              "createdAt": "2026-07-29T15:19:34Z",
+              "updatedAt": "2026-07-29T15:19:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrI7-w",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-29T15:19:41Z",
+          "updatedAt": "2026-07-29T15:19:41Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Done, thanks!",
+              "createdAt": "2026-07-29T15:19:41Z",
+              "updatedAt": "2026-07-29T15:19:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrNzUg",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-29T15:26:04Z",
+          "updatedAt": "2026-07-29T15:26:04Z",
+          "comments": [
+            {
+              "originalPosition": 107,
+              "body": "1. Re: 's/As descussed in /As discussed in the/'\r\n\r\nHmmm...But then it would render to \"As discussed in **the** Section 1\" and I was under impression that RFCs normally use the named/numbered sections w/o the definite article...But I might be wrong..\r\n \r\n2. How about \"utilizing the NSP or the Local-Use prefix usually prevent the use of a public DNS64\r\nresolver\"?",
+              "createdAt": "2026-07-29T15:26:04Z",
+              "updatedAt": "2026-07-29T15:26:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrcjtw",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-29T15:49:56Z",
+          "updatedAt": "2026-07-29T15:49:56Z",
+          "comments": [
+            {
+              "originalPosition": 107,
+              "body": "Hmmm.. I had thought it would expand to \"As discussed in the [Introduction]\", but it might expand to \"As discussed in the [Section 1]\", which would indeed be odd. Do whatever you think.\r\n\r\n2: That works. \r\n\r\nAnd thanks!",
+              "createdAt": "2026-07-29T15:49:56Z",
+              "updatedAt": "2026-07-29T15:49:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABHrjcug",
+          "commit": {
+            "abbreviatedOid": "6275550"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-29T16:03:24Z",
+          "updatedAt": "2026-07-29T16:03:25Z",
+          "comments": [
+            {
+              "originalPosition": 107,
+              "body": "I've rendered the .md before responding. it renders to \"As discussed in [Section 1]\". Not sure if it can be changed, but anyway I think it's a nit which could be done later.\r\n\r\nThanks for such a prompt review, I'll submit.",
+              "createdAt": "2026-07-29T16:03:24Z",
+              "updatedAt": "2026-07-29T16:03:25Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOQNM3Es74LuHY",
+      "title": "Addressing last of Nick's comments",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/7",
+      "state": "OPEN",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "- Rephrasing the beginning of the operational considerations as per Nick's suggestions\r\n- Sorting out MUST/SHOULD for the config knob in the security section to make it consistent with Section 3 (proposed 6052 update, which requires a config knob)",
+      "createdAt": "2026-07-29T20:02:54Z",
+      "updatedAt": "2026-07-29T20:02:54Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "a1632f09bff8df390e6a1bdf71af7cb33ec6d4b6",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "nick1",
+      "headRefOid": "40f806ee22f03b11bab8c216e3bdf484fa448b90",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
