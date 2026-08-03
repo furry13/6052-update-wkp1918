@@ -133,7 +133,7 @@ the utility of the WKP in enterprise networks.
 This document reuses the Terminology section of [RFC6052] and [RFC8190].
 
 
-# RFC6052 Update
+# RFC6052 Update {#update}
 
 This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
 Well-Known Prefix") as follows:
@@ -221,16 +221,17 @@ for which it should be used.
 
 ## Use of Network Specific or Local-Use Prefix
 
-Use of a network specific prefix or the Local-Use one
-(64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section 3.1
-as a MUST requirement. If a network employs
-a network specific prefix or 64:ff9b:1::/48, the behavior of synthesizing
-a private use IPv4 address is not prohibited by [RFC6052].
-The changes proposed in this document are not impacting networks using NSPs
-or the Local-Use prefix.
+Use of a network specific prefix or the Local-Use prefix as defined in 	
+[RFC8215], 64:ff9b:1::/48, does not preclude the removal of section	
+3.1 of [RFC6052] as a MUST requirement.
+Whether a network employs a network specific	
+prefix or 64:ff9b:1::/48, the behavior of synthesizing a private use	
+IPv4 address is not prohibited by [RFC6052]. The changes proposed in	
+this document are not impactful to networks using NSPs or the Local-Use	
+prefix as defined in [RFC8215].
 
 As discussed in [Introduction](#introduction), utilizing the NSP or
-the Local-Use prefix usually prevent the use of a public DNS64
+the Local-Use prefix will typically prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
@@ -251,12 +252,15 @@ prevalent in managed NAT64 (PLAT) environments.
 
 Modifying the recommended behavior to allow such address compositions may, in
 the absence of explicit filtering, enable traffic flows that were previously
-prohibited by the translator's default logic. To mitigate this risk, existing
-managed NAT64 implementations compliant with RFC 6052 SHOULD NOT alter their
-default dropping behavior. Instead, they SHOULD provide a configuration knob to
-enable this functionality, ensuring that the transition to supporting
-non-globally reachable addresses is an intentional administrative action
-accompanied by a review of local security policies.
+prohibited by the translator's default logic.
+To mitigate this risk, existing managed PLAT implementations
+compliant with RFC 6052 SHOULD NOT alter their default dropping
+behavior. As specified in [Update](#update),
+implementations which choose to
+drop those packets by default MUST provide a configuration knob to
+control this functionality, ensuring that the transition to supporting
+non-globally reachable addresses is an intentional administrative
+action accompanied by a review of local security policies.
 
 Furthermore, administrators should not rely on the internal verification logic
 of the translator to enforce security boundaries. Instead, explicit policies
