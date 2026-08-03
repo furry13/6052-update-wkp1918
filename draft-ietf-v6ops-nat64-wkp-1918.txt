@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                            29 July 2026
-Expires: 30 January 2027
+Intended status: Standards Track                           3 August 2026
+Expires: 4 February 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2027.
+   This Internet-Draft will expire on 4 February 2027.
 
 Copyright Notice
 
@@ -261,16 +261,18 @@ Table of Contents
 
 4.2.  Use of Network Specific or Local-Use Prefix
 
-   Use of a network specific prefix or the Local-Use one
-   (64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section
-   3.1 as a MUST requirement.  If a network employs a network specific
+   Use of a network specific prefix or the Local-Use prefix as defined
+   in
+   [RFC8215], 64:ff9b:1::/48, does not preclude the removal of section
+   3.1 of [RFC6052] as a MUST requirement.  Whether a network employs a
+   network specific
    prefix or 64:ff9b:1::/48, the behavior of synthesizing a private use
    IPv4 address is not prohibited by [RFC6052].  The changes proposed in
-   this document are not impacting networks using NSPs or the Local-Use
-   prefix.
+   this document are not impactful to networks using NSPs or the Local-
+   Use prefix as defined in [RFC8215].
 
    As discussed in Section 1, utilizing the NSP or the Local-Use prefix
-   usually prevent the use of a public DNS64 resolver in the vast
+   will typically prevent the use of a public DNS64 resolver in the vast
    majority of cases, as large scale public DNS64 resolvers use the WKP
    to maximize compatibility.
 
@@ -293,9 +295,10 @@ Table of Contents
    Modifying the recommended behavior to allow such address compositions
    may, in the absence of explicit filtering, enable traffic flows that
    were previously prohibited by the translator's default logic.  To
-   mitigate this risk, existing managed NAT64 implementations compliant
-   with RFC 6052 SHOULD NOT alter their default dropping behavior.
-   Instead, they SHOULD provide a configuration knob to enable this
+   mitigate this risk, existing managed PLAT implementations compliant
+   with RFC 6052 SHOULD NOT alter their default dropping behavior.  As
+   specified in Section 3, implementations which choose to drop those
+   packets by default MUST provide a configuration knob to control this
    functionality, ensuring that the transition to supporting non-
    globally reachable addresses is an intentional administrative action
    accompanied by a review of local security policies.
