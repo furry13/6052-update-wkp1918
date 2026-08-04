@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-02T01:49:49.883639+00:00",
+  "timestamp": "2026-08-04T01:27:45.606984+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -554,25 +554,35 @@
       "id": "PR_kwDOQNM3Es74LuHY",
       "title": "Addressing last of Nick's comments",
       "url": "https://github.com/furry13/6052-update-wkp1918/pull/7",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "furry13",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "- Rephrasing the beginning of the operational considerations as per Nick's suggestions\r\n- Sorting out MUST/SHOULD for the config knob in the security section to make it consistent with Section 3 (proposed 6052 update, which requires a config knob)",
       "createdAt": "2026-07-29T20:02:54Z",
-      "updatedAt": "2026-07-29T20:02:54Z",
+      "updatedAt": "2026-08-03T18:21:53Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "a1632f09bff8df390e6a1bdf71af7cb33ec6d4b6",
       "headRepository": "furry13/6052-update-wkp1918",
       "headRefName": "nick1",
       "headRefOid": "40f806ee22f03b11bab8c216e3bdf484fa448b90",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2026-08-03T18:21:53Z",
+      "mergedAt": "2026-08-03T18:21:53Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "ffd6bfd34786a21287c409237c50dcf234f7eddb"
+      },
+      "comments": [
+        {
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Apologies for the delay - I confused this PR with the previous one, and had thought that I already approved it!",
+          "createdAt": "2026-08-03T18:21:49Z",
+          "updatedAt": "2026-08-03T18:21:49Z"
+        }
+      ],
       "reviews": []
     }
   ]
