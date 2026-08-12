@@ -112,7 +112,8 @@ Combining the WKP with the Local-Use prefix (64:ff9b:1::/48, [RFC8215]) is also
 not feasible, as it introduces the same challenges as using the WKP
 with the NSP.
 
-Prohibiting the WKP from representing private IPv4 addresses ([RFC1918], [RFC6598]) offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
+Prohibiting the WKP from representing private IPv4 addresses [RFC1918] and shared addresses [RFC6598]
+offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
 It also substantially complicates network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
@@ -277,7 +278,7 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon and Jordi Palet for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, XiPeng Xiao for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
