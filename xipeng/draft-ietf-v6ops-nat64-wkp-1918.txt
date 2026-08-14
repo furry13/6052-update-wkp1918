@@ -193,7 +193,7 @@ Table of Contents
    Provider-side translators (PLATs) MUST translate such packets unless
    configured otherwise.  Because administrators may rely on dropping
    these packets as an implicit security policy, the translation MAY be
-   disabled by an administrative policy, which MUST be configurable.
+   disabled by a configuration knob.
 
    ===
 
@@ -392,7 +392,7 @@ Acknowledgments
 
    The authors would like to thank Mikael Abrahamsson, Mohamed
    Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz
-   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet,
+   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, and
    XiPeng Xiao for their helpful comments and suggestions on this
    document.
 
