@@ -112,7 +112,8 @@ Combining the WKP with the Local-Use prefix (64:ff9b:1::/48, [RFC8215]) is also
 not feasible, as it introduces the same challenges as using the WKP
 with the NSP.
 
-Prohibiting the WKP from representing private IPv4 addresses ([RFC1918], [RFC6598]) offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
+Prohibiting the WKP from representing private IPv4 addresses [RFC1918] and shared addresses [RFC6598]
+offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
 It also substantially complicates network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
@@ -158,13 +159,11 @@ listed in [RFC1918] and [RFC6598].
 
 Unmanaged client-side translators (CLATs) MUST translate packets in which an
 address is composed of the Well-Known Prefix and these non-globally reachable
-IPv4 address by default.
+IPv4 address (defined in [RFC1918] and [RFC6598]) by default.
 
 Provider-side translators (PLATs) MUST translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
-implicit security policy, PLAT implementations MAY choose not to translate such
-packets by default. However, such PLAT implementations MUST provide a
-configuration knob to enable translation for these packets.
+implicit security policy, the translation MAY be disabled by a configuration knob.
 
 ===
 
@@ -277,7 +276,7 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon and Jordi Palet for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, and XiPeng Xiao for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
@@ -327,23 +326,3 @@ PLAT Behavior: The PLAT applies the same configuration logic as in Scenario A.
 It MUST translate the packet to IPv4 and forward it to 10.1.2.3 unless local
 administrative policy configures it to drop the packet.
 
-## Scenario C: CLAT flows avoiding the PLAT
-{: numbered="false"}
-
-An IPv4-only application on an unmanaged client device generates an
-IPv4 packet destined for 10.1.2.3.
-
-The local CLAT intercepts the IPv4 packet and synthesizes an IPv6
-destination address by prepending the Well-Known Prefix:
-64:ff9b::10.1.2.3.
-
-CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST
-translate this packet by default, ignoring the non-globally reachable
-nature of the embedded IPv4 address, and forward the resulting IPv6
-packet to the network.
-
-The network administrator created the relevant rules to avoid translation
-as the destination interface 10.1.2.3 is also configured as dual-stack with
-the address 64:ff9b::10.1.2.3.
-
-The IPv6 network more specific routes forward the packet to the IPv6 destination.
