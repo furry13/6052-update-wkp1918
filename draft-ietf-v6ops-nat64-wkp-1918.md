@@ -163,8 +163,7 @@ IPv4 address (defined in [RFC1918] and [RFC6598]) by default.
 
 Provider-side translators (PLATs) MUST translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
-implicit security policy, the translation MAY be disabled by an administrative
-policy, which MUST be configurable.
+implicit security policy, the translation MAY be disabled by a configuration knob.
 
 ===
 
@@ -277,7 +276,7 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, XiPeng Xiao for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, and XiPeng Xiao for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
