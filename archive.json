@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-13T01:06:02.475802+00:00",
+  "timestamp": "2026-08-16T00:40:43.733006+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -584,6 +584,61 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOQNM3Es7_Gmqf",
+      "title": "Xipeng's comments",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/8",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-08-14T12:58:19Z",
+      "updatedAt": "2026-08-14T13:56:49Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "ffd6bfd34786a21287c409237c50dcf234f7eddb",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "xipeng",
+      "headRefOid": "88b0ab44dbe9fff7222b6fd2cc23ea72fbf599d2",
+      "closedAt": "2026-08-14T13:56:49Z",
+      "mergedAt": "2026-08-14T13:56:49Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "2ffad09a3e8caad264d8ed6554dc2efa8192d4e0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABJk4nPg",
+          "commit": {
+            "abbreviatedOid": "65f2274"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you very much. I have two completely non-blocking comment. My second is only worth addressing if you happen to edit for some other reason.",
+          "createdAt": "2026-08-14T13:32:23Z",
+          "updatedAt": "2026-08-14T13:35:52Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "I'm sad that we lost \"configuration knob\", but oh well... (not worth addressing)",
+              "createdAt": "2026-08-14T13:32:23Z",
+              "updatedAt": "2026-08-14T13:35:52Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "IFF you make any other edits, would you please update to:\nTed Lemon, Jordi Palet, and XiPeng Xiao \n(add an 'and' before XiPeng) - not worth a separate edit - my OCD will survive :-) ",
+              "createdAt": "2026-08-14T13:34:37Z",
+              "updatedAt": "2026-08-14T13:35:52Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
