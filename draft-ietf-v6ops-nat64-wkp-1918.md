@@ -163,7 +163,8 @@ IPv4 address (defined in [RFC1918] and [RFC6598]) by default.
 
 Provider-side translators (PLATs) MUST translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
-implicit security policy, the translation MAY be disabled by a configuration knob.
+implicit security policy, the translator MUST provide a configuration option
+to disable translation of such packets.
 
 ===
 
@@ -255,8 +256,7 @@ prohibited by the translator's default logic.
 To mitigate this risk, existing managed PLAT implementations
 compliant with RFC 6052 SHOULD NOT alter their default dropping
 behavior. As specified in [Update](#update),
-implementations which choose to
-drop those packets by default MUST provide a configuration knob to
+PLAT implementations MUST provide a configuration knob to
 control this functionality, ensuring that the transition to supporting
 non-globally reachable addresses is an intentional administrative
 action accompanied by a review of local security policies.
