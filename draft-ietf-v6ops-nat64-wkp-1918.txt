@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                          14 August 2026
-Expires: 15 February 2027
+Intended status: Standards Track                          27 August 2026
+Expires: 28 February 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 February 2027.
+   This Internet-Draft will expire on 28 February 2027.
 
 Copyright Notice
 
@@ -192,8 +192,9 @@ Table of Contents
 
    Provider-side translators (PLATs) MUST translate such packets unless
    configured otherwise.  Because administrators may rely on dropping
-   these packets as an implicit security policy, the translation MAY be
-   disabled by a configuration knob.
+   these packets as an implicit security policy, the translator MUST
+   provide a configuration option to disable translation of such
+   packets.
 
    ===
 
@@ -295,11 +296,11 @@ Table of Contents
    were previously prohibited by the translator's default logic.  To
    mitigate this risk, existing managed PLAT implementations compliant
    with RFC 6052 SHOULD NOT alter their default dropping behavior.  As
-   specified in Section 3, implementations which choose to drop those
-   packets by default MUST provide a configuration knob to control this
-   functionality, ensuring that the transition to supporting non-
-   globally reachable addresses is an intentional administrative action
-   accompanied by a review of local security policies.
+   specified in Section 3, PLAT implementations MUST provide a
+   configuration knob to control this functionality, ensuring that the
+   transition to supporting non-globally reachable addresses is an
+   intentional administrative action accompanied by a review of local
+   security policies.
 
    Furthermore, administrators should not rely on the internal
    verification logic of the translator to enforce security boundaries.
