@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-25T00:40:12.298537+00:00",
+  "timestamp": "2026-08-27T05:46:23.563524+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -639,6 +639,42 @@
           ]
         }
       ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOQNM3Es8AAAABBJh2VQ",
+      "title": "Changing the config knob to MUST",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/9",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "As per Brian's comment",
+      "createdAt": "2026-08-27T01:49:18Z",
+      "updatedAt": "2026-08-27T01:51:05Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "2ffad09a3e8caad264d8ed6554dc2efa8192d4e0",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "brian",
+      "headRefOid": "da84a8641959bf5e794817e510507fe639aefd61",
+      "closedAt": "2026-08-27T01:50:47Z",
+      "mergedAt": "2026-08-27T01:50:47Z",
+      "mergedBy": "wkumari",
+      "mergeCommit": {
+        "oid": "17cbdb4c9405e68a9b6d2276528f580651699ac8"
+      },
+      "comments": [
+        {
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As discussed.\n\nThank you!\nW",
+          "createdAt": "2026-08-27T01:51:05Z",
+          "updatedAt": "2026-08-27T01:51:05Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
