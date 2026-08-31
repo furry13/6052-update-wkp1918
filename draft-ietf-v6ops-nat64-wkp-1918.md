@@ -137,7 +137,7 @@ This document reuses the Terminology section of [RFC6052] and [RFC8190].
 # RFC6052 Update {#update}
 
 This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
-Well-Known Prefix") as follows 
+Well-Known Prefix") as follows
 ({{security}} discusses recommendations for existing implementations in more details):
 
 OLD TEXT:
