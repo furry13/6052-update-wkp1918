@@ -137,7 +137,8 @@ This document reuses the Terminology section of [RFC6052] and [RFC8190].
 # RFC6052 Update {#update}
 
 This document updates Section 3.1 of [RFC6052] ("Restrictions on the Use of the
-Well-Known Prefix") as follows:
+Well-Known Prefix") as follows 
+({{security}} discusses recommendations for existing implementations in more details):
 
 OLD TEXT:
 
@@ -236,7 +237,7 @@ resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
 
-# Security Considerations
+# Security Considerations {#security}
 
 Legitimizing packets where the IPv6 destination address is composed of the WKP
 and a non-globally reachable IPv4 address does not, inherently, introduce new
@@ -276,7 +277,8 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, and XiPeng Xiao for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch,
+Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
 
 # Appendix: Example flow
 {: numbered="false"}
