@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                            29 July 2026
-Expires: 30 January 2027
+Intended status: Standards Track                          31 August 2026
+Expires: 4 March 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2027.
+   This Internet-Draft will expire on 4 March 2027.
 
 Copyright Notice
 
@@ -91,7 +91,6 @@ Table of Contents
    Appendix: Example flow
      Scenario A: Unmanaged CLAT to Managed PLAT Flow
      Scenario B: Native IPv6 Host to Managed PLAT
-     Scenario C: CLAT flows avoiding the PLAT
    Authors' Addresses
 
 1.  Introduction
@@ -137,9 +136,9 @@ Table of Contents
    as using the WKP with the NSP.
 
    Prohibiting the WKP from representing private IPv4 addresses
-   ([RFC1918], [RFC6598]) offers no substantial benefit to IPv6-only or
-   IPv6-mostly deployments.  It also substantially complicates network
-   design and the behavior of nodes.
+   [RFC1918] and shared addresses [RFC6598] offers no substantial
+   benefit to IPv6-only or IPv6-mostly deployments.  It also
+   substantially complicates network design and the behavior of nodes.
 
    Given the recent operational experience in deploying IPv6-only and
    IPv6-mostly networks, it is desirable to allow translators to use a
@@ -165,7 +164,8 @@ Table of Contents
 3.  RFC6052 Update
 
    This document updates Section 3.1 of [RFC6052] ("Restrictions on the
-   Use of the Well-Known Prefix") as follows:
+   Use of the Well-Known Prefix") as follows (Section 5 discusses
+   recommendations for existing implementations in more details):
 
    OLD TEXT:
 
@@ -188,14 +188,14 @@ Table of Contents
 
    Unmanaged client-side translators (CLATs) MUST translate packets in
    which an address is composed of the Well-Known Prefix and these non-
-   globally reachable IPv4 address by default.
+   globally reachable IPv4 address (defined in [RFC1918] and [RFC6598])
+   by default.
 
    Provider-side translators (PLATs) MUST translate such packets unless
    configured otherwise.  Because administrators may rely on dropping
-   these packets as an implicit security policy, PLAT implementations
-   MAY choose not to translate such packets by default.  However, such
-   PLAT implementations MUST provide a configuration knob to enable
-   translation for these packets.
+   these packets as an implicit security policy, the translator MUST
+   provide a configuration option to disable translation of such
+   packets.
 
    ===
 
@@ -261,16 +261,18 @@ Table of Contents
 
 4.2.  Use of Network Specific or Local-Use Prefix
 
-   Use of a network specific prefix or the Local-Use one
-   (64:ff9b:1::/48, [RFC8215]) does not preclude the removal of section
-   3.1 as a MUST requirement.  If a network employs a network specific
+   Use of a network specific prefix or the Local-Use prefix as defined
+   in
+   [RFC8215], 64:ff9b:1::/48, does not preclude the removal of section
+   3.1 of [RFC6052] as a MUST requirement.  Whether a network employs a
+   network specific
    prefix or 64:ff9b:1::/48, the behavior of synthesizing a private use
    IPv4 address is not prohibited by [RFC6052].  The changes proposed in
-   this document are not impacting networks using NSPs or the Local-Use
-   prefix.
+   this document are not impactful to networks using NSPs or the Local-
+   Use prefix as defined in [RFC8215].
 
    As discussed in Section 1, utilizing the NSP or the Local-Use prefix
-   usually prevent the use of a public DNS64 resolver in the vast
+   will typically prevent the use of a public DNS64 resolver in the vast
    majority of cases, as large scale public DNS64 resolvers use the WKP
    to maximize compatibility.
 
@@ -293,12 +295,13 @@ Table of Contents
    Modifying the recommended behavior to allow such address compositions
    may, in the absence of explicit filtering, enable traffic flows that
    were previously prohibited by the translator's default logic.  To
-   mitigate this risk, existing managed NAT64 implementations compliant
-   with RFC 6052 SHOULD NOT alter their default dropping behavior.
-   Instead, they SHOULD provide a configuration knob to enable this
-   functionality, ensuring that the transition to supporting non-
-   globally reachable addresses is an intentional administrative action
-   accompanied by a review of local security policies.
+   mitigate this risk, existing managed PLAT implementations compliant
+   with RFC 6052 SHOULD NOT alter their default dropping behavior.  As
+   specified in Section 3, PLAT implementations MUST provide a
+   configuration knob to control this functionality, ensuring that the
+   transition to supporting non-globally reachable addresses is an
+   intentional administrative action accompanied by a review of local
+   security policies.
 
    Furthermore, administrators should not rely on the internal
    verification logic of the translator to enforce security boundaries.
@@ -391,8 +394,9 @@ Acknowledgments
 
    The authors would like to thank Mikael Abrahamsson, Mohamed
    Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz
-   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon and Jordi Palet
-   for their helpful comments and suggestions on this document.
+   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet,
+   XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and
+   suggestions on this document.
 
 Appendix: Example flow
 
@@ -443,27 +447,6 @@ Scenario B: Native IPv6 Host to Managed PLAT
    Scenario A.  It MUST translate the packet to IPv4 and forward it to
    10.1.2.3 unless local administrative policy configures it to drop the
    packet.
-
-Scenario C: CLAT flows avoiding the PLAT
-
-   An IPv4-only application on an unmanaged client device generates an
-   IPv4 packet destined for 10.1.2.3.
-
-   The local CLAT intercepts the IPv4 packet and synthesizes an IPv6
-   destination address by prepending the Well-Known Prefix:
-   64:ff9b::10.1.2.3.
-
-   CLAT Behavior: Under the updated guidance in Section 3, the CLAT MUST
-   translate this packet by default, ignoring the non-globally reachable
-   nature of the embedded IPv4 address, and forward the resulting IPv6
-   packet to the network.
-
-   The network administrator created the relevant rules to avoid
-   translation as the destination interface 10.1.2.3 is also configured
-   as dual-stack with the address 64:ff9b::10.1.2.3.
-
-   The IPv6 network more specific routes forward the packet to the IPv6
-   destination.
 
 Authors' Addresses
 
