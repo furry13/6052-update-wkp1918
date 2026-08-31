@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                          27 August 2026
-Expires: 28 February 2027
+Intended status: Standards Track                          31 August 2026
+Expires: 4 March 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 February 2027.
+   This Internet-Draft will expire on 4 March 2027.
 
 Copyright Notice
 
@@ -164,7 +164,8 @@ Table of Contents
 3.  RFC6052 Update
 
    This document updates Section 3.1 of [RFC6052] ("Restrictions on the
-   Use of the Well-Known Prefix") as follows:
+   Use of the Well-Known Prefix") as follows (Section 5 discusses
+   recommendations for existing implementations in more details):
 
    OLD TEXT:
 
@@ -393,9 +394,9 @@ Acknowledgments
 
    The authors would like to thank Mikael Abrahamsson, Mohamed
    Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz
-   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, and
-   XiPeng Xiao for their helpful comments and suggestions on this
-   document.
+   Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet,
+   XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and
+   suggestions on this document.
 
 Appendix: Example flow
 
