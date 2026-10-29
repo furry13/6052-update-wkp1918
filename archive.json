@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-27T02:54:32.721311+00:00",
+  "timestamp": "2026-10-29T03:29:24.453428+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -710,6 +710,32 @@
           "updatedAt": "2026-08-31T14:06:31Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOQNM3Es8AAAABLQyt3Q",
+      "title": "Suggestions from Med's AD Review",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/11",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "  * Self contained abstract\n  * inadequate use of normative language\n  * Suggestions to motivate the relax update\n  * formatting fixes\n  * better rendering of links\n  * reference the appendix in the main text\n  * nits\n",
+      "createdAt": "2026-10-28T12:52:03Z",
+      "updatedAt": "2026-10-28T12:52:06Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "2464503c208e6535e207b58f700d26f509542a22",
+      "headRepository": "boucadair/6052-update-wkp1918",
+      "headRefName": "main",
+      "headRefOid": "cc3320d9f71948edd4d00fada8bc41fa9c0d1c61",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
