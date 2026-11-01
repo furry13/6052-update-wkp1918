@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-29T03:29:24.453428+00:00",
+  "timestamp": "2026-11-01T03:15:41.329790+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -717,26 +717,193 @@
       "id": "PR_kwDOQNM3Es8AAAABLQyt3Q",
       "title": "Suggestions from Med's AD Review",
       "url": "https://github.com/furry13/6052-update-wkp1918/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "  * Self contained abstract\n  * inadequate use of normative language\n  * Suggestions to motivate the relax update\n  * formatting fixes\n  * better rendering of links\n  * reference the appendix in the main text\n  * nits\n",
       "createdAt": "2026-10-28T12:52:03Z",
-      "updatedAt": "2026-10-28T12:52:06Z",
+      "updatedAt": "2026-10-29T21:17:34Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "2464503c208e6535e207b58f700d26f509542a22",
       "headRepository": "boucadair/6052-update-wkp1918",
       "headRefName": "main",
       "headRefOid": "cc3320d9f71948edd4d00fada8bc41fa9c0d1c61",
+      "closedAt": "2026-10-29T21:17:34Z",
+      "mergedAt": "2026-10-29T21:17:34Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "35cfa9da4ebe685ca43108dfc0a1c36e3656e6a1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVAy8XA",
+          "commit": {
+            "abbreviatedOid": "cc3320d"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Thank you very much Med!",
+          "createdAt": "2026-10-29T21:17:24Z",
+          "updatedAt": "2026-10-29T21:17:24Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOQNM3Es8AAAABLtUcWA",
+      "title": "Pending AD Comments",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/12",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses the following commets:\r\n\r\n# The underlying \"complexity\" is deployment-specific\r\n\r\nCURRENT:\r\n   Prohibiting the WKP from representing private IPv4 addresses\r\n   [RFC1918] and shared addresses [RFC6598] offers no substantial\r\n   benefit to IPv6-only or IPv6-mostly deployments.  It also\r\n   substantially complicates network design and the behavior of nodes.\r\n\r\nI don't think that 'substantial' complexity is accurate. This is deployment-specific, IMO. More importantly, I don't think that we need to overstate the problem to justify relaxing the deployment guidance in 6052.\r\n\r\n# Recommending the use of WKP or NSP is beyond the scope of this document\r\n\r\nCURRENT:\r\n   As discussed in Section 1, utilizing the NSP or the Local-Use prefix\r\n   will typically prevent the use of a public DNS64 resolver in the vast\r\n   majority of cases, as large scale public DNS64 resolvers use the WKP\r\n   to maximize compatibility.\r\n\r\nI don't think this document is the right place to discuss the tradeoffs of such design. I suggest to delete that text.\r\n\r\n# More Operational Considerations\r\n\r\n## Although this is discussed in Security considerations, I think Section 4.1 can be more complete by mentioning existing PLAT implems which offers a knob to relax 6052 behavior. A forward reference to Sec Cons would be OK, though.\r\n\r\nFor example, tayga implem has the following:\r\n\r\n\"### Strict RFC6052 Well-Known Prefix Compliance\r\nTayga by default will drop packets containing non-global IPv4 addresses when using the well-known prefix (`64:ff9b::/96`) as required by RFC6052. This restriction may be disabled by using the `wkpf-strict no` option in the configuration file, as may be required in testing environments or if your network will ensure RFC6052 compliance on your own. This restriction does not apply to the well-known local-use space (`64:ff9b:1::/48`) per RFC8215.\"\r\n\r\nHaving a default policy to forward such packets outside a domain may leak some packets\r\n\r\n## Given that future and existing implems may support different default behaviors (different defaults, basically), can we please add a recommendations for implems to expose their default for handling non-global addresses. This is useful for manageability.\r\n\r\n## Likewise, operators should rely on means such as https://www.rfc-editor.org/info/rfc8158/#section-4.6.4 to track and detect when some translations are not compliant with the intended policy for packets with non-global @es.\r\n\r\n#  RFC1918 and RFC6598\r\n\r\n## These are only examples. Please double check that these are normative.",
+      "createdAt": "2026-10-30T06:57:24Z",
+      "updatedAt": "2026-10-30T20:34:43Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "a4d1a3bcb981106f03c28ac3266c3a2cff960d82",
+      "headRepository": "boucadair/6052-update-wkp1918",
+      "headRefName": "patch-1",
+      "headRefOid": "ca21813eba3e264e8e5d7be7e6a3bb7bc41bdc5b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVITykg",
+          "commit": {
+            "abbreviatedOid": "f605268"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:31:23Z",
+          "updatedAt": "2026-10-30T13:31:23Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "I'm sorry, would you be able to elaborate on it? I'm not sure I understand how this edit changes the meaning of the sentence...",
+              "createdAt": "2026-10-30T13:31:23Z",
+              "updatedAt": "2026-10-30T13:31:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVIY7TA",
+          "commit": {
+            "abbreviatedOid": "f605268"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:37:40Z",
+          "updatedAt": "2026-10-30T13:37:41Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "RFC 6877 says:\r\n\r\n>    The 464XLAT architecture **only** supports IPv4 in the\r\n>    client-server model, where **the server has a global IPv4 address**.\r\n\r\nthat scoping as coined in the RFC does not match implem behavior.",
+              "createdAt": "2026-10-30T13:37:40Z",
+              "updatedAt": "2026-10-30T13:37:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVIW3tw",
+          "commit": {
+            "abbreviatedOid": "f605268"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:35:05Z",
+          "updatedAt": "2026-10-30T17:55:55Z",
+          "comments": [
+            {
+              "originalPosition": 88,
+              "body": "One of the most common questions I've heard about this proposal is \"what's the problem? You can always use NSP' - and it's also been discussed on the list, AFAIR. So IMHO it's very useful to provide at least some explanation why RFC6052 requirements need to be relaxed and why another option (using NSP) is not a best choice for an operator. \n\nSo I'd prefer to keep this paragraph - happy to rephrase it, if you think it helps.",
+              "createdAt": "2026-10-30T13:35:05Z",
+              "updatedAt": "2026-10-30T17:55:55Z"
+            },
+            {
+              "originalPosition": 94,
+              "body": "```suggestion\nGiven that distinct behaviors may be exposed by existing and future implementations, it is RECOMMENDED that managed translators\n```",
+              "createdAt": "2026-10-30T13:37:41Z",
+              "updatedAt": "2026-10-30T17:55:55Z"
+            },
+            {
+              "originalPosition": 97,
+              "body": "```suggestion\nMoreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-global addresses. \n```",
+              "createdAt": "2026-10-30T13:40:51Z",
+              "updatedAt": "2026-10-30T17:55:55Z"
+            },
+            {
+              "originalPosition": 69,
+              "body": "Oh I see, so your point is that CLAT is not supposed to work at all (even with NSP) for non-global destination address?!\n\nI do suspect that the word 'global' is an oversight, and the key thing here is 'IPv6-only client goes to IPv4-only server'.  It's been noticed multiple times (esp. when we wre working on the CLAT draft) that 6877 is a bit...relaxed in its wording. For example, it says: \"CLAT:   CLAT is customer-side translator (XLAT) that complies with\n           [[RFC6145](https://www.rfc-editor.org/info/rfc6145/)].  It algorithmically translates 1:1 private IPv4\n           addresses to global IPv6 addresses, and vice versa. \" - so as per that definition, CLAT can not translate *public* IPv4 addresses at all (which is exactly opposite of the line you quoted). So my suggestion would be to leave the text as it (as it might lead to more confusion than it's clarifying)...\n\nAlso, it's not even a normative language about CLAT behaviour, it's about how operators are (were) expected to deploy 464XLAT. RFC7915-compatible CLAT should be able to translate private IPv4 at least with the NSP...\n\nDoes it make sense?",
+              "createdAt": "2026-10-30T14:02:28Z",
+              "updatedAt": "2026-10-30T17:55:55Z"
+            },
+            {
+              "originalPosition": 97,
+              "body": "(The reason for my suggestion is that I do not think we should not tell the operators how to achieve the result - by auditing, ,monitoring or by just enforcing the config they need. What matters is the result. ",
+              "createdAt": "2026-10-30T14:04:40Z",
+              "updatedAt": "2026-10-30T17:55:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVNPioA",
+          "commit": {
+            "abbreviatedOid": "f605268"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T20:15:24Z",
+          "updatedAt": "2026-10-30T20:15:24Z",
+          "comments": [
+            {
+              "originalPosition": 88,
+              "body": "Let's keep it then.",
+              "createdAt": "2026-10-30T20:15:24Z",
+              "updatedAt": "2026-10-30T20:15:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVNVs3Q",
+          "commit": {
+            "abbreviatedOid": "0abf54f"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T20:24:48Z",
+          "updatedAt": "2026-10-30T20:24:49Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "That text is not normative (that's an info RFC anyway ;-)) but it sets the scope. The definition of CLAT/PLAT have also the restriction you want to relax. I think that an update of the 464XLAT RFC us needed (at least to cover the main case that triggered your work).\r\n\r\nIf you prefer to focus in 6052 update only, then I suggest that you say in the draft that the constraint about private addresses is also present in other RFCs, but for the sake of simplicity, this draft focuses on 6052 fix.",
+              "createdAt": "2026-10-30T20:24:48Z",
+              "updatedAt": "2026-10-30T20:31:43Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
