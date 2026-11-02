@@ -157,7 +157,9 @@ Table of Contents
 
    This document updates [RFC6052] to relax a restriction on the use of
    the WKP (Section 3).  Appendix B provides examples to illustrate the
-   updated behavior.
+   updated behavior.  Note that while other documents (such as
+   [RFC6877]) mention limitations on using CLAT to reach private IPv4
+   addresses, this document focuses solely on [RFC6052].
 
 2.  Conventions and Definitions
 
