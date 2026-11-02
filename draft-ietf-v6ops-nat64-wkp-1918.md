@@ -36,15 +36,15 @@ author:
     email: furry13@gmail.com
 
 normative:
-  RFC1918:
   RFC6052:
-  RFC6598:
   RFC8190:
 
 informative:
+  RFC1918:
   RFC5735:
   RFC6147:
   RFC6877:
+  RFC6598:
   RFC6890:
   RFC7050:
   RFC8781:
@@ -76,7 +76,7 @@ translated.
 
 The deployment guidance in {{Section 3.1 of !RFC6052}} prohibits IPv4/IPv6 translators from using the
 Well-Known Prefix (WKP, 64:ff9b::/96) to represent non-globally reachable IPv4
-addresses, such as those defined in {{RFC1918}} or listed in {{Section 2.2.2 of RFC6890}}. That guidance
+addresses, such as those defined in {{?RFC1918}} or listed in {{Section 2.2.2 of ?RFC6890}}. That guidance
 was meant to avoid ambiguous translation that might be experienced with such non-globally unique addresses. However, there
 are deployment contexts where that consideration is not an issue.
 
@@ -88,7 +88,7 @@ not rely on DNS64 and instead use local synthesis such as Customer-side
 Translator (CLAT) {{?RFC6877}} or similar approaches.
 
 Enterprise and other closed networks may require IPv6-only nodes to
-communicate with both internal (e.g., using [RFC1918] addresses) and external
+communicate with both internal (e.g., using {{?RFC1918}} addresses) and external
 (Internet) IPv4-only destinations. The restriction in {{Section 3.1 of RFC6052}}
 prevents such networks from utilizing the WKP and, consequently, from relying
 on public DNS64 servers (e.g., forwarding requests for external zones to public
@@ -112,15 +112,15 @@ not feasible as it introduces the same challenges as using the WKP
 with an NSP.
 
 Prohibiting the WKP from representing private IPv4 addresses [RFC1918] and shared addresses [RFC6598]
-offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
-It also substantially complicates network design and the behavior of nodes.
+offers no substantial benefit to some IPv6-only or IPv6-mostly deployments.
+It might also complicates network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
 (including the WKP) to represent IPv4 addresses regardless of their
 globally reachable or non-globally reachable status.
 In particular, allowing translators to use the WKP to represent
-private IPv4 addresses ([RFC1918], [RFC6598]) will improve
+private IPv4 addresses (e.g., [RFC1918] and [RFC6598]) will improve
 the utility of the WKP in enterprise networks, in particular.
 
 This document updates {{!RFC6052}} to relax a restriction on the use of the WKP ({{update}}). {{sec-example}} provides examples to illustrate the updated behavior.
@@ -155,7 +155,7 @@ NEW TEXT:
 >
 > Unmanaged client-side translators (CLATs) MUST translate packets in which an
 > address is composed of the Well-Known Prefix and these non-globally reachable
-> IPv4 address (defined in [RFC1918] and [RFC6598]) by default.
+> IPv4 address (such as those defined in [RFC1918] and [RFC6598]) by default.
 >
 > Provider-side translators (PLATs) MUST translate such packets unless configured
 > otherwise. Because administrators may rely on dropping these packets as an
@@ -175,7 +175,7 @@ the original {{Section 3.1 of !RFC6052}}.
 
 Testing and operational experience with existing CLAT implementations (both
 mobile and non-mobile) have revealed highly inconsistent behavior regarding the
-original restriction in {{Section 3.1 of !RFC6052}}. While some implementations
+original restriction in {{Section 3.1 of !RFC6052}} and the scope set in {{Section 1 of RFC6877}}. While some implementations
 strictly comply with the original guidance and drop packets destined for
 non-globally reachable IPv4 addresses, many other widely deployed CLATs
 completely ignore this restriction and translate the packets.
@@ -201,6 +201,10 @@ widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
+
+Some NAT64 implementations provides a configuration parameter to
+relax the {{RFC6052}} restriction for handling non-global addresses. Refer to {{security}} for a recommendation about such existing implementations.
+
 ## Use of Network-Specific or Local-Use Prefix
 
 Use of an NSP or the Local-Use prefix (64:ff9b:1::/48)
@@ -217,6 +221,16 @@ the Local-Use prefix will typically prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
+## Monitoring Translator Behaviors
+
+Given that distinct behaviors may be exposed by existing and future implementations, it is RECOMMENDED that managed translators
+support a mechanism to expose their default value for handling non-global addresses (e.g., as a managed object such as a YANG augmentation to {{?RFC8512}}).
+
+Moreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-global addresses.
+
+These recommendations may not be easily followed for unmanaged translators (e.g., CLAT).
+
+Forwarding of packets with destination non-global addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.
 
 # Security Considerations {#security}
 
