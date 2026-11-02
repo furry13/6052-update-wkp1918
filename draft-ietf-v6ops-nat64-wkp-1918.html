@@ -1053,11 +1053,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">nat64-wkp-1918</td>
-<td class="right">October 2026</td>
+<td class="right">November 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kumari &amp; Linkova</td>
-<td class="center">Expires 2 May 2027</td>
+<td class="center">Expires 6 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1073,12 +1073,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc6052" class="eref">6052</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-29" class="published">29 October 2026</time>
+<time datetime="2026-11-02" class="published">2 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-05-02">2 May 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-06">6 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ translated.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1191,6 +1191,9 @@ translated.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-use-of-network-specific-or-" class="internal xref">Use of Network-Specific or Local-Use Prefix</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-monitoring-translator-behav" class="internal xref">Monitoring Translator Behaviors</a></p>
 </li>
             </ul>
 </li>
@@ -1272,14 +1275,14 @@ troubleshooting, and other operational aspects of the network.<a href="#section-
 not feasible as it introduces the same challenges as using the WKP
 with an NSP.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">Prohibiting the WKP from representing private IPv4 addresses <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and shared addresses <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>
-offers no substantial benefit to IPv6-only or IPv6-mostly deployments.
-It also substantially complicates network design and the behavior of nodes.<a href="#section-1-7" class="pilcrow">¶</a></p>
+offers no substantial benefit to some IPv6-only or IPv6-mostly deployments.
+It might also complicates network design and the behavior of nodes.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
 (including the WKP) to represent IPv4 addresses regardless of their
 globally reachable or non-globally reachable status.
 In particular, allowing translators to use the WKP to represent
-private IPv4 addresses (<span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span>, <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) will improve
+private IPv4 addresses (e.g., <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) will improve
 the utility of the WKP in enterprise networks, in particular.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">This document updates <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> to relax a restriction on the use of the WKP (<a href="#update" class="auto internal xref">Section 3</a>). <a href="#sec-example" class="auto internal xref">Appendix B</a> provides examples to illustrate the updated behavior.<a href="#section-1-9" class="pilcrow">¶</a></p>
 </section>
@@ -1323,7 +1326,7 @@ Well-Known Prefix and a non-global IPv4 address; they <span class="bcp14">MUST</
 such as those listed in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>.<a href="#section-3-5.1" class="pilcrow">¶</a></p>
 <p id="section-3-5.2">Unmanaged client-side translators (CLATs) <span class="bcp14">MUST</span> translate packets in which an
 address is composed of the Well-Known Prefix and these non-globally reachable
-IPv4 address (defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) by default.<a href="#section-3-5.2" class="pilcrow">¶</a></p>
+IPv4 address (such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) by default.<a href="#section-3-5.2" class="pilcrow">¶</a></p>
 <p id="section-3-5.3">Provider-side translators (PLATs) <span class="bcp14">MUST</span> translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
 implicit security policy, the translator <span class="bcp14">MUST</span> provide a configuration option
@@ -1349,7 +1352,7 @@ the original <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" clas
         </h3>
 <p id="section-4.1-1">Testing and operational experience with existing CLAT implementations (both
 mobile and non-mobile) have revealed highly inconsistent behavior regarding the
-original restriction in <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>. While some implementations
+original restriction in <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> and the scope set in <span><a href="https://rfc-editor.org/rfc/rfc6877#section-1" class="relref">Section 1</a> of [<a href="#RFC6877" class="cite xref">RFC6877</a>]</span>. While some implementations
 strictly comply with the original guidance and drop packets destined for
 non-globally reachable IPv4 addresses, many other widely deployed CLATs
 completely ignore this restriction and translate the packets.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
@@ -1371,6 +1374,8 @@ if different prefixes must be used for different IPv4 destinations. None of the
 widely deployed NAT64 Prefix Discovery mechanisms (<span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span>, <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>)
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1-5">Some NAT64 implementations provides a configuration parameter to
+relax the <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> restriction for handling non-global addresses. Refer to <a href="#security" class="auto internal xref">Section 5</a> for a recommendation about such existing implementations.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="use-of-network-specific-or-local-use-prefix">
@@ -1389,6 +1394,18 @@ prefix as defined in <span>[<a href="#RFC8215" class="cite xref">RFC8215</a>]</s
 the Local-Use prefix will typically prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="monitoring-translator-behaviors">
+<section id="section-4.3">
+        <h3 id="name-monitoring-translator-behav">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-monitoring-translator-behav" class="section-name selfRef">Monitoring Translator Behaviors</a>
+        </h3>
+<p id="section-4.3-1">Given that distinct behaviors may be exposed by existing and future implementations, it is <span class="bcp14">RECOMMENDED</span> that managed translators
+support a mechanism to expose their default value for handling non-global addresses (e.g., as a managed object such as a YANG augmentation to <span>[<a href="#RFC8512" class="cite xref">RFC8512</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Moreover, operators <span class="bcp14">SHOULD</span> ensure (e.g., by enforcing explicit configuration or using mechanism described in <span><a href="https://rfc-editor.org/rfc/rfc8158#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC8158" class="cite xref">RFC8158</a>]</span>) that their managed translations are compliant with the intended policy for packets with non-global addresses.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">These recommendations may not be easily followed for unmanaged translators (e.g., CLAT).<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Forwarding of packets with destination non-global addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1444,10 +1461,6 @@ used to define authorized traffic patterns through the translator.<a href="#sect
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="RFC1918">[RFC1918]</dt>
-        <dd>
-<span class="refAuthor">Rekhter, Y.</span>, <span class="refAuthor">Moskowitz, B.</span>, <span class="refAuthor">Karrenberg, D.</span>, <span class="refAuthor">de Groot, G. J.</span>, and <span class="refAuthor">E. Lear</span>, <span class="refTitle">"Address Allocation for Private Internets"</span>, <span class="seriesInfo">BCP 5</span>, <span class="seriesInfo">RFC 1918</span>, <span class="seriesInfo">DOI 10.17487/RFC1918</span>, <time datetime="1996-02" class="refDate">February 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1918">https://www.rfc-editor.org/rfc/rfc1918</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
@@ -1455,10 +1468,6 @@ used to define authorized traffic patterns through the translator.<a href="#sect
 <dt id="RFC6052">[RFC6052]</dt>
         <dd>
 <span class="refAuthor">Bao, C.</span>, <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">X. Li</span>, <span class="refTitle">"IPv6 Addressing of IPv4/IPv6 Translators"</span>, <span class="seriesInfo">RFC 6052</span>, <span class="seriesInfo">DOI 10.17487/RFC6052</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6052">https://www.rfc-editor.org/rfc/rfc6052</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC6598">[RFC6598]</dt>
-        <dd>
-<span class="refAuthor">Weil, J.</span>, <span class="refAuthor">Kuarsingh, V.</span>, <span class="refAuthor">Donley, C.</span>, <span class="refAuthor">Liljenstolpe, C.</span>, and <span class="refAuthor">M. Azinger</span>, <span class="refTitle">"IANA-Reserved IPv4 Prefix for Shared Address Space"</span>, <span class="seriesInfo">BCP 153</span>, <span class="seriesInfo">RFC 6598</span>, <span class="seriesInfo">DOI 10.17487/RFC6598</span>, <time datetime="2012-04" class="refDate">April 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6598">https://www.rfc-editor.org/rfc/rfc6598</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
@@ -1485,6 +1494,10 @@ used to define authorized traffic patterns through the translator.<a href="#sect
         <dd>
 <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">J. P. Martinez</span>, <span class="refTitle">"Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-v6ops-rfc6146-bis-16</span>, <time datetime="2026-09-04" class="refDate">4 September 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-v6ops-rfc6146-bis-16">https://datatracker.ietf.org/doc/html/draft-ietf-v6ops-rfc6146-bis-16</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC1918">[RFC1918]</dt>
+        <dd>
+<span class="refAuthor">Rekhter, Y.</span>, <span class="refAuthor">Moskowitz, B.</span>, <span class="refAuthor">Karrenberg, D.</span>, <span class="refAuthor">de Groot, G. J.</span>, and <span class="refAuthor">E. Lear</span>, <span class="refTitle">"Address Allocation for Private Internets"</span>, <span class="seriesInfo">BCP 5</span>, <span class="seriesInfo">RFC 1918</span>, <span class="seriesInfo">DOI 10.17487/RFC1918</span>, <time datetime="1996-02" class="refDate">February 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1918">https://www.rfc-editor.org/rfc/rfc1918</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5735">[RFC5735]</dt>
         <dd>
 <span class="refAuthor">Cotton, M.</span> and <span class="refAuthor">L. Vegoda</span>, <span class="refTitle">"Special Use IPv4 Addresses"</span>, <span class="seriesInfo">RFC 5735</span>, <span class="seriesInfo">DOI 10.17487/RFC5735</span>, <time datetime="2010-01" class="refDate">January 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5735">https://www.rfc-editor.org/rfc/rfc5735</a>&gt;</span>. </dd>
@@ -1492,6 +1505,10 @@ used to define authorized traffic patterns through the translator.<a href="#sect
 <dt id="RFC6147">[RFC6147]</dt>
         <dd>
 <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Sullivan, A.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">I. van Beijnum</span>, <span class="refTitle">"DNS64: DNS Extensions for Network Address Translation from IPv6 Clients to IPv4 Servers"</span>, <span class="seriesInfo">RFC 6147</span>, <span class="seriesInfo">DOI 10.17487/RFC6147</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6147">https://www.rfc-editor.org/rfc/rfc6147</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6598">[RFC6598]</dt>
+        <dd>
+<span class="refAuthor">Weil, J.</span>, <span class="refAuthor">Kuarsingh, V.</span>, <span class="refAuthor">Donley, C.</span>, <span class="refAuthor">Liljenstolpe, C.</span>, and <span class="refAuthor">M. Azinger</span>, <span class="refTitle">"IANA-Reserved IPv4 Prefix for Shared Address Space"</span>, <span class="seriesInfo">BCP 153</span>, <span class="seriesInfo">RFC 6598</span>, <span class="seriesInfo">DOI 10.17487/RFC6598</span>, <time datetime="2012-04" class="refDate">April 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6598">https://www.rfc-editor.org/rfc/rfc6598</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6877">[RFC6877]</dt>
         <dd>
@@ -1505,9 +1522,17 @@ used to define authorized traffic patterns through the translator.<a href="#sect
         <dd>
 <span class="refAuthor">Savolainen, T.</span>, <span class="refAuthor">Korhonen, J.</span>, and <span class="refAuthor">D. Wing</span>, <span class="refTitle">"Discovery of the IPv6 Prefix Used for IPv6 Address Synthesis"</span>, <span class="seriesInfo">RFC 7050</span>, <span class="seriesInfo">DOI 10.17487/RFC7050</span>, <time datetime="2013-11" class="refDate">November 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7050">https://www.rfc-editor.org/rfc/rfc7050</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8158">[RFC8158]</dt>
+        <dd>
+<span class="refAuthor">Sivakumar, S.</span> and <span class="refAuthor">R. Penno</span>, <span class="refTitle">"IP Flow Information Export (IPFIX) Information Elements for Logging NAT Events"</span>, <span class="seriesInfo">RFC 8158</span>, <span class="seriesInfo">DOI 10.17487/RFC8158</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8158">https://www.rfc-editor.org/rfc/rfc8158</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8215">[RFC8215]</dt>
         <dd>
 <span class="refAuthor">Anderson, T.</span>, <span class="refTitle">"Local-Use IPv4/IPv6 Translation Prefix"</span>, <span class="seriesInfo">RFC 8215</span>, <span class="seriesInfo">DOI 10.17487/RFC8215</span>, <time datetime="2017-08" class="refDate">August 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8215">https://www.rfc-editor.org/rfc/rfc8215</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8512">[RFC8512]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Sivakumar, S.</span>, <span class="refAuthor">Jacquenet, C.</span>, <span class="refAuthor">Vinapamula, S.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Module for Network Address Translation (NAT) and Network Prefix Translation (NPT)"</span>, <span class="seriesInfo">RFC 8512</span>, <span class="seriesInfo">DOI 10.17487/RFC8512</span>, <time datetime="2019-01" class="refDate">January 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8512">https://www.rfc-editor.org/rfc/rfc8512</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8781">[RFC8781]</dt>
       <dd>

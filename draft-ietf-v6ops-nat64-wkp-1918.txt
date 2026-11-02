@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                         29 October 2026
-Expires: 2 May 2027
+Intended status: Standards Track                         2 November 2026
+Expires: 6 May 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 May 2027.
+   This Internet-Draft will expire on 6 May 2027.
 
 Copyright Notice
 
@@ -83,6 +83,7 @@ Table of Contents
    4.  Operational Considerations
      4.1.  Existing Behavior
      4.2.  Use of Network-Specific or Local-Use Prefix
+     4.3.  Monitoring Translator Behaviors
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -143,16 +144,16 @@ Table of Contents
 
    Prohibiting the WKP from representing private IPv4 addresses
    [RFC1918] and shared addresses [RFC6598] offers no substantial
-   benefit to IPv6-only or IPv6-mostly deployments.  It also
-   substantially complicates network design and the behavior of nodes.
+   benefit to some IPv6-only or IPv6-mostly deployments.  It might also
+   complicates network design and the behavior of nodes.
 
    Given the recent operational experience in deploying IPv6-only and
    IPv6-mostly networks, it is desirable to allow translators to use a
    single prefix (including the WKP) to represent IPv4 addresses
    regardless of their globally reachable or non-globally reachable
    status.  In particular, allowing translators to use the WKP to
-   represent private IPv4 addresses ([RFC1918], [RFC6598]) will improve
-   the utility of the WKP in enterprise networks, in particular.
+   represent private IPv4 addresses (e.g., [RFC1918] and [RFC6598]) will
+   improve the utility of the WKP in enterprise networks, in particular.
 
    This document updates [RFC6052] to relax a restriction on the use of
    the WKP (Section 3).  Appendix B provides examples to illustrate the
@@ -191,8 +192,8 @@ Table of Contents
    |  
    |  Unmanaged client-side translators (CLATs) MUST translate packets
    |  in which an address is composed of the Well-Known Prefix and these
-   |  non-globally reachable IPv4 address (defined in [RFC1918] and
-   |  [RFC6598]) by default.
+   |  non-globally reachable IPv4 address (such as those defined in
+   |  [RFC1918] and [RFC6598]) by default.
    |  
    |  Provider-side translators (PLATs) MUST translate such packets
    |  unless configured otherwise.  Because administrators may rely on
@@ -214,10 +215,11 @@ Table of Contents
    Testing and operational experience with existing CLAT implementations
    (both mobile and non-mobile) have revealed highly inconsistent
    behavior regarding the original restriction in Section 3.1 of
-   [RFC6052].  While some implementations strictly comply with the
-   original guidance and drop packets destined for non-globally
-   reachable IPv4 addresses, many other widely deployed CLATs completely
-   ignore this restriction and translate the packets.
+   [RFC6052] and the scope set in Section 1 of [RFC6877].  While some
+   implementations strictly comply with the original guidance and drop
+   packets destined for non-globally reachable IPv4 addresses, many
+   other widely deployed CLATs completely ignore this restriction and
+   translate the packets.
 
    This inconsistency creates significant operational challenges.
    Network operators are unable to predictably determine how unmanaged,
@@ -243,6 +245,11 @@ Table of Contents
    [RFC8781]) provide a method to map a specific NAT64 prefix to a
    subset of IPv4 addresses for which it should be used.
 
+   Some NAT64 implementations provides a configuration parameter to
+   relax the [RFC6052] restriction for handling non-global addresses.
+   Refer to Section 5 for a recommendation about such existing
+   implementations.
+
 4.2.  Use of Network-Specific or Local-Use Prefix
 
    Use of an NSP or the Local-Use prefix (64:ff9b:1::/48) [RFC8215] does
@@ -260,6 +267,26 @@ Table of Contents
    will typically prevent the use of a public DNS64 resolver in the vast
    majority of cases, as large scale public DNS64 resolvers use the WKP
    to maximize compatibility.
+
+4.3.  Monitoring Translator Behaviors
+
+   Given that distinct behaviors may be exposed by existing and future
+   implementations, it is RECOMMENDED that managed translators support a
+   mechanism to expose their default value for handling non-global
+   addresses (e.g., as a managed object such as a YANG augmentation to
+   [RFC8512]).
+
+   Moreover, operators SHOULD ensure (e.g., by enforcing explicit
+   configuration or using mechanism described in Section 4.6.4 of
+   [RFC8158]) that their managed translations are compliant with the
+   intended policy for packets with non-global addresses.
+
+   These recommendations may not be easily followed for unmanaged
+   translators (e.g., CLAT).
+
+   Forwarding of packets with destination non-global addresses, when
+   done in purpose, requires adequate routing policies to be enforced at
+   the translator and/or its servcing routers.
 
 5.  Security Considerations
 
@@ -302,11 +329,6 @@ Table of Contents
 
 7.1.  Normative References
 
-   [RFC1918]  Rekhter, Y., Moskowitz, B., Karrenberg, D., de Groot, G.
-              J., and E. Lear, "Address Allocation for Private
-              Internets", BCP 5, RFC 1918, DOI 10.17487/RFC1918,
-              February 1996, <https://www.rfc-editor.org/rfc/rfc1918>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -316,11 +338,6 @@ Table of Contents
               Li, "IPv6 Addressing of IPv4/IPv6 Translators", RFC 6052,
               DOI 10.17487/RFC6052, October 2010,
               <https://www.rfc-editor.org/rfc/rfc6052>.
-
-   [RFC6598]  Weil, J., Kuarsingh, V., Donley, C., Liljenstolpe, C., and
-              M. Azinger, "IANA-Reserved IPv4 Prefix for Shared Address
-              Space", BCP 153, RFC 6598, DOI 10.17487/RFC6598, April
-              2012, <https://www.rfc-editor.org/rfc/rfc6598>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -345,6 +362,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-v6ops-
               rfc6146-bis-16>.
 
+   [RFC1918]  Rekhter, Y., Moskowitz, B., Karrenberg, D., de Groot, G.
+              J., and E. Lear, "Address Allocation for Private
+              Internets", BCP 5, RFC 1918, DOI 10.17487/RFC1918,
+              February 1996, <https://www.rfc-editor.org/rfc/rfc1918>.
+
    [RFC5735]  Cotton, M. and L. Vegoda, "Special Use IPv4 Addresses",
               RFC 5735, DOI 10.17487/RFC5735, January 2010,
               <https://www.rfc-editor.org/rfc/rfc5735>.
@@ -354,6 +376,11 @@ Table of Contents
               Translation from IPv6 Clients to IPv4 Servers", RFC 6147,
               DOI 10.17487/RFC6147, April 2011,
               <https://www.rfc-editor.org/rfc/rfc6147>.
+
+   [RFC6598]  Weil, J., Kuarsingh, V., Donley, C., Liljenstolpe, C., and
+              M. Azinger, "IANA-Reserved IPv4 Prefix for Shared Address
+              Space", BCP 153, RFC 6598, DOI 10.17487/RFC6598, April
+              2012, <https://www.rfc-editor.org/rfc/rfc6598>.
 
    [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
               Combination of Stateful and Stateless Translation",
@@ -370,9 +397,20 @@ Table of Contents
               RFC 7050, DOI 10.17487/RFC7050, November 2013,
               <https://www.rfc-editor.org/rfc/rfc7050>.
 
+   [RFC8158]  Sivakumar, S. and R. Penno, "IP Flow Information Export
+              (IPFIX) Information Elements for Logging NAT Events",
+              RFC 8158, DOI 10.17487/RFC8158, December 2017,
+              <https://www.rfc-editor.org/rfc/rfc8158>.
+
    [RFC8215]  Anderson, T., "Local-Use IPv4/IPv6 Translation Prefix",
               RFC 8215, DOI 10.17487/RFC8215, August 2017,
               <https://www.rfc-editor.org/rfc/rfc8215>.
+
+   [RFC8512]  Boucadair, M., Ed., Sivakumar, S., Jacquenet, C.,
+              Vinapamula, S., and Q. Wu, "A YANG Module for Network
+              Address Translation (NAT) and Network Prefix Translation
+              (NPT)", RFC 8512, DOI 10.17487/RFC8512, January 2019,
+              <https://www.rfc-editor.org/rfc/rfc8512>.
 
    [RFC8781]  Colitti, L. and J. Linkova, "Discovering PREF64 in Router
               Advertisements", RFC 8781, DOI 10.17487/RFC8781, April
