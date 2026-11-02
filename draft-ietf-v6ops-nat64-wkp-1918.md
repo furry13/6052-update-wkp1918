@@ -123,7 +123,7 @@ In particular, allowing translators to use the WKP to represent
 private IPv4 addresses (e.g., [RFC1918] and [RFC6598]) will improve
 the utility of the WKP in enterprise networks, in particular.
 
-This document updates {{!RFC6052}} to relax a restriction on the use of the WKP ({{update}}). {{sec-example}} provides examples to illustrate the updated behavior. 
+This document updates {{!RFC6052}} to relax a restriction on the use of the WKP ({{update}}). {{sec-example}} provides examples to illustrate the updated behavior.
 Note that while other documents (such as {{?RFC6877}}) mention limitations on using CLAT to reach private IPv4 addresses, this document focuses solely on {{!RFC6052}}.
 
 # Conventions and Definitions
