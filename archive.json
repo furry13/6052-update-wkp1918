@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-01T03:15:41.329790+00:00",
+  "timestamp": "2026-11-03T04:35:12.291579+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -759,24 +759,26 @@
       "id": "PR_kwDOQNM3Es8AAAABLtUcWA",
       "title": "Pending AD Comments",
       "url": "https://github.com/furry13/6052-update-wkp1918/pull/12",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This PR addresses the following commets:\r\n\r\n# The underlying \"complexity\" is deployment-specific\r\n\r\nCURRENT:\r\n   Prohibiting the WKP from representing private IPv4 addresses\r\n   [RFC1918] and shared addresses [RFC6598] offers no substantial\r\n   benefit to IPv6-only or IPv6-mostly deployments.  It also\r\n   substantially complicates network design and the behavior of nodes.\r\n\r\nI don't think that 'substantial' complexity is accurate. This is deployment-specific, IMO. More importantly, I don't think that we need to overstate the problem to justify relaxing the deployment guidance in 6052.\r\n\r\n# Recommending the use of WKP or NSP is beyond the scope of this document\r\n\r\nCURRENT:\r\n   As discussed in Section 1, utilizing the NSP or the Local-Use prefix\r\n   will typically prevent the use of a public DNS64 resolver in the vast\r\n   majority of cases, as large scale public DNS64 resolvers use the WKP\r\n   to maximize compatibility.\r\n\r\nI don't think this document is the right place to discuss the tradeoffs of such design. I suggest to delete that text.\r\n\r\n# More Operational Considerations\r\n\r\n## Although this is discussed in Security considerations, I think Section 4.1 can be more complete by mentioning existing PLAT implems which offers a knob to relax 6052 behavior. A forward reference to Sec Cons would be OK, though.\r\n\r\nFor example, tayga implem has the following:\r\n\r\n\"### Strict RFC6052 Well-Known Prefix Compliance\r\nTayga by default will drop packets containing non-global IPv4 addresses when using the well-known prefix (`64:ff9b::/96`) as required by RFC6052. This restriction may be disabled by using the `wkpf-strict no` option in the configuration file, as may be required in testing environments or if your network will ensure RFC6052 compliance on your own. This restriction does not apply to the well-known local-use space (`64:ff9b:1::/48`) per RFC8215.\"\r\n\r\nHaving a default policy to forward such packets outside a domain may leak some packets\r\n\r\n## Given that future and existing implems may support different default behaviors (different defaults, basically), can we please add a recommendations for implems to expose their default for handling non-global addresses. This is useful for manageability.\r\n\r\n## Likewise, operators should rely on means such as https://www.rfc-editor.org/info/rfc8158/#section-4.6.4 to track and detect when some translations are not compliant with the intended policy for packets with non-global @es.\r\n\r\n#  RFC1918 and RFC6598\r\n\r\n## These are only examples. Please double check that these are normative.",
       "createdAt": "2026-10-30T06:57:24Z",
-      "updatedAt": "2026-10-30T20:34:43Z",
+      "updatedAt": "2026-11-02T07:53:04Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "a4d1a3bcb981106f03c28ac3266c3a2cff960d82",
       "headRepository": "boucadair/6052-update-wkp1918",
       "headRefName": "patch-1",
       "headRefOid": "ca21813eba3e264e8e5d7be7e6a3bb7bc41bdc5b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-11-02T07:53:04Z",
+      "mergedAt": "2026-11-02T07:53:04Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "bb769d1a27120ab597f540cc2c891f5e3ff22d2f"
+      },
       "comments": [],
       "reviews": [
         {
@@ -902,8 +904,76 @@
               "updatedAt": "2026-10-30T20:31:43Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVb1ciA",
+          "commit": {
+            "abbreviatedOid": "ca21813"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-02T07:52:02Z",
+          "updatedAt": "2026-11-02T07:52:03Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "Ack, I'll add the text to the intoduction.",
+              "createdAt": "2026-11-02T07:52:03Z",
+              "updatedAt": "2026-11-02T07:52:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABVb1sbg",
+          "commit": {
+            "abbreviatedOid": "ca21813"
+          },
+          "author": "furry13",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-02T07:52:33Z",
+          "updatedAt": "2026-11-02T07:52:42Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "```suggestion\noriginal restriction in {{Section 3.1 of !RFC6052}}. While some implementations\n```",
+              "createdAt": "2026-11-02T07:52:33Z",
+              "updatedAt": "2026-11-02T07:52:42Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOQNM3Es8AAAABMQNlgg",
+      "title": "Limiting the scope to 6052",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/13",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-11-02T08:28:24Z",
+      "updatedAt": "2026-11-02T08:37:59Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "bb769d1a27120ab597f540cc2c891f5e3ff22d2f",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "10",
+      "headRefOid": "c18f15afab0a85504f95f52d3bff8a9802170f2f",
+      "closedAt": "2026-11-02T08:37:59Z",
+      "mergedAt": "2026-11-02T08:37:59Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "afccbc7f49628007bfb9d09f3f40654119f4d6fb"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
