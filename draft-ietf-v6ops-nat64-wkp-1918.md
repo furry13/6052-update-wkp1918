@@ -101,7 +101,7 @@ not a feasible solution for nodes performing local synthesis or running CLAT.
 None of the widely deployed NAT64 Prefix Discovery mechanisms ({{?RFC7050}},
 {{?RFC8781}}) provide a method to map a specific NAT64 prefix to the subset of
 IPv4 addresses for which it should be used.  While {{RFC7225}} defines
-such a mapping through an optional IPv4 prefix list in the PCP PREFIX64 option, 
+such a mapping through an optional IPv4 prefix list in the PCP PREFIX64 option,
 PCP-based NAT64 prefix discovery is not widely deployed.
 
 According to {{Section 3 of RFC7050}}, a node must use all learned prefixes when
