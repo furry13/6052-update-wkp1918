@@ -47,6 +47,7 @@ informative:
   RFC6598:
   RFC6890:
   RFC7050:
+  RFC7225:
   RFC8781:
   RFC8215:
   EID5547:
@@ -99,7 +100,9 @@ Network-Specific Prefix (NSP) for non-globally reachable IPv4 addresses — is
 not a feasible solution for nodes performing local synthesis or running CLAT.
 None of the widely deployed NAT64 Prefix Discovery mechanisms ({{?RFC7050}},
 {{?RFC8781}}) provide a method to map a specific NAT64 prefix to the subset of
-IPv4 addresses for which it should be used.
+IPv4 addresses for which it should be used.  While {{RFC7225}} defines
+such a mapping through an optional IPv4 prefix list in the PCP PREFIX64 option,
+PCP-based NAT64 prefix discovery is not widely deployed.
 
 According to {{Section 3 of RFC7050}}, a node must use all learned prefixes when
 performing local IPv6 address synthesis. Consequently, if a node discovers both
@@ -328,5 +331,4 @@ administrative policy configures it to drop such packet.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch,
-Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
