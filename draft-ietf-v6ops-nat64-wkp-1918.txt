@@ -5,8 +5,8 @@
 IPv6 Operations                                                W. Kumari
 Internet-Draft                                                J. Linkova
 Updates: 6052 (if approved)                                  Google, LLC
-Intended status: Standards Track                         2 November 2026
-Expires: 6 May 2027
+Intended status: Standards Track                        24 November 2026
+Expires: 28 May 2027
 
 
 Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 May 2027.
+   This Internet-Draft will expire on 28 May 2027.
 
 Copyright Notice
 
@@ -129,7 +129,10 @@ Table of Contents
    for nodes performing local synthesis or running CLAT.  None of the
    widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050],
    [RFC8781]) provide a method to map a specific NAT64 prefix to the
-   subset of IPv4 addresses for which it should be used.
+   subset of IPv4 addresses for which it should be used.  While
+   [RFC7225] defines such a mapping through an optional IPv4 prefix list
+   in the PCP PREFIX64 option, PCP-based NAT64 prefix discovery is not
+   widely deployed.
 
    According to Section 3 of [RFC7050], a node must use all learned
    prefixes when performing local IPv6 address synthesis.  Consequently,
@@ -399,6 +402,11 @@ Table of Contents
               RFC 7050, DOI 10.17487/RFC7050, November 2013,
               <https://www.rfc-editor.org/rfc/rfc7050>.
 
+   [RFC7225]  Boucadair, M., "Discovering NAT64 IPv6 Prefixes Using the
+              Port Control Protocol (PCP)", RFC 7225,
+              DOI 10.17487/RFC7225, May 2014,
+              <https://www.rfc-editor.org/rfc/rfc7225>.
+
    [RFC8158]  Sivakumar, S. and R. Penno, "IP Flow Information Export
               (IPFIX) Information Elements for Logging NAT Events",
               RFC 8158, DOI 10.17487/RFC8158, December 2017,
@@ -492,8 +500,8 @@ Acknowledgments
    The authors would like to thank Mikael Abrahamsson, Mohamed
    Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz
    Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet,
-   XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and
-   suggestions on this document.
+   Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful
+   comments and suggestions on this document.
 
 Authors' Addresses
 
