@@ -1,5 +1,5 @@
 ---
-title: "Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses"
+title: "Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable` IPv4 Addresses"
 abbrev: "nat64-wkp-1918"
 category: std
 
@@ -95,9 +95,9 @@ prevents such networks from utilizing the WKP and, consequently, from relying
 on public DNS64 servers (e.g., forwarding requests for external zones to public
 DNS64 servers) that utilize the WKP in order to maximize compatibility.
 
-Because public DNS64 resolvers are not expected to return A records or synthesize AAAA records containing non-global IPv4 addresses, it might appear that using public DNS64 prevents hosts from reaching non-global IPv4 destinations anyway.
+Because public DNS64 resolvers are not expected to return A records or synthesize AAAA records containing non-globally reachable IPv4 addresses, it might appear that using public DNS64 prevents hosts from accessing non-globally reachable IPv4 destinations anyway.
 However, this is not the case.
-Even if public DNS64 is used, hosts may still need to reach non-global IPv4 destinations in several scenarios, including, but limited to:
+Even if public DNS64 is used, hosts may still need to access non-globally reachable IPv4 destinations in several scenarios, including, but limited to:
 
 * IPv4 literals: The network signals public DNS64 servers to hosts, but hosts must reach certain IPv4 destinations directly by their IPv4 addresses without using DNS.
 * Split-horizon DNS: Dedicated internal DNS servers resolve private corporate zones, while all other queries are forwarded to a public DNS64 server.
@@ -161,7 +161,7 @@ OLD TEXT:
 NEW TEXT:
 
 {: quote}
-> The Well-Known Prefix MAY be used by address translators to represent non-global IPv4 addresses,
+> The Well-Known Prefix MAY be used by address translators to represent non-globally reachable IPv4 addresses,
 > such as those listed in [RFC1918] and [RFC6598].
 >
 > Unmanaged client-side translators (CLATs) MUST translate packets in which an
@@ -213,10 +213,10 @@ provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
 Some NAT64 implementations provides a configuration parameter to
-relax the {{RFC6052}} restriction for handling non-global addresses. Refer to {{security}} for a recommendation about such existing implementations.
+relax the {{RFC6052}} restriction for handling non-globally reachable addresses. Refer to {{security}} for a recommendation about such existing implementations.
 
-Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-global IPv4 addresses.
-Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-global IPv4 addresses, or rely on host-based CLAT and local synthesis.
+Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-globally reachable IPv4 addresses.
+Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-globally reachable IPv4 addresses, or rely on host-based CLAT and local synthesis.
 
 ## Use of Network-Specific or Local-Use Prefix
 
@@ -238,13 +238,13 @@ use the WKP to maximize compatibility.
 ## Monitoring Translator Behaviors
 
 Given that distinct behaviors may be exposed by existing and future implementations, it is RECOMMENDED that managed translators
-support a mechanism to expose their default value for handling non-global addresses (e.g., as a managed object such as a YANG augmentation to {{?RFC8512}}).
+support a mechanism to expose their default value for handling non-globally reachable addresses (e.g., as a managed object such as a YANG augmentation to {{?RFC8512}}).
 
-Moreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-global addresses.
+Moreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-globally reachable addresses.
 
 These recommendations may not be easily followed for unmanaged translators (e.g., CLAT).
 
-Forwarding of packets with destination non-global addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.
+Forwarding of packets with destination non-globally reachable addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.
 
 # Security Considerations {#security}
 
@@ -263,8 +263,8 @@ prevalent in managed NAT64 (PLAT) environments.
 For example, a translator's default dropping behavior may have
 served as an implicit defense against DNS rebinding attacks, in
 which an externally controlled name resolves to an AAAA record
-composed of the WKP and a non-globally reachable IPv4 address.  DNS
-rebinding protections implemented in resolvers to filter private use
+composed of the WKP and a non-globally reachable IPv4 address.
+DNS rebinding protections implemented in resolvers to filter private use
 A records addresses may not recognize such v4 addresses when
 embedded in AAAA records.
 
