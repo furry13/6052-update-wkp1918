@@ -161,7 +161,7 @@ OLD TEXT:
 NEW TEXT:
 
 {: quote}
-> The Well-Known Prefix MAY be used to represent non-global IPv4 addresses,
+> The Well-Known Prefix MAY be used by address translators to represent non-global IPv4 addresses,
 > such as those listed in [RFC1918] and [RFC6598].
 >
 > Unmanaged client-side translators (CLATs) MUST translate packets in which an
