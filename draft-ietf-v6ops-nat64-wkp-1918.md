@@ -95,6 +95,13 @@ prevents such networks from utilizing the WKP and, consequently, from relying
 on public DNS64 servers (e.g., forwarding requests for external zones to public
 DNS64 servers) that utilize the WKP in order to maximize compatibility.
 
+Because public DNS64 resolvers are not expected to return A records or synthesize AAAA records containing non-global IPv4 addresses, it might appear that using public DNS64 prevents hosts from reaching non-global IPv4 destinations anyway.
+However, this is not the case.
+Even if public DNS64 is used, hosts may still need to reach non-global IPv4 destinations in several scenarios, including, but limited to:
+
+* IPv4 literals: The network signals public DNS64 servers to hosts, but hosts must reach certain IPv4 destinations directly by their IPv4 addresses without using DNS.
+* Split-horizon DNS: Dedicated internal DNS servers resolve private corporate zones, while all other queries are forwarded to a public DNS64 server.
+
 Using two Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers (NAT64) prefixes {{?I-D.ietf-v6ops-rfc6146-bis}} — the WKP for Internet destinations and a
 Network-Specific Prefix (NSP) for non-globally reachable IPv4 addresses — is
 not a feasible solution for nodes performing local synthesis or running CLAT.
@@ -205,9 +212,11 @@ widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
-
 Some NAT64 implementations provides a configuration parameter to
 relax the {{RFC6052}} restriction for handling non-global addresses. Refer to {{security}} for a recommendation about such existing implementations.
+
+Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-global IPv4 addresses.
+Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-global IPv4 addresses, or rely on host-based CLAT and local synthesis.
 
 ## Use of Network-Specific or Local-Use Prefix
 
@@ -224,6 +233,7 @@ As discussed in [Introduction](#introduction), utilizing an NSP or
 the Local-Use prefix will typically prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
+
 
 ## Monitoring Translator Behaviors
 
@@ -331,4 +341,4 @@ administrative policy configures it to drop such packet.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, David Lawrence, Ted Lemon, Jordi Palet, Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
