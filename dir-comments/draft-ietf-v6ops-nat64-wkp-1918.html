@@ -1289,7 +1289,7 @@ not feasible as it introduces the same challenges as using the WKP
 with an NSP.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">Prohibiting the WKP from representing private IPv4 addresses <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and shared addresses <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>
 offers no substantial benefit to some IPv6-only or IPv6-mostly deployments.
-It might also complicates network design and the behavior of nodes.<a href="#section-1-9" class="pilcrow">¶</a></p>
+It might also complicate network design and the behavior of nodes.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
 (including the WKP) to represent IPv4 addresses regardless of their
@@ -1340,7 +1340,7 @@ Well-Known Prefix and a non-global IPv4 address; they <span class="bcp14">MUST</
 such as those listed in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>.<a href="#section-3-5.1" class="pilcrow">¶</a></p>
 <p id="section-3-5.2">Unmanaged client-side translators (CLATs) <span class="bcp14">MUST</span> translate packets in which an
 address is composed of the Well-Known Prefix and these non-globally reachable
-IPv4 address (such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) by default.<a href="#section-3-5.2" class="pilcrow">¶</a></p>
+IPv4 addresses (such as those defined in <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> and <span>[<a href="#RFC6598" class="cite xref">RFC6598</a>]</span>) by default.<a href="#section-3-5.2" class="pilcrow">¶</a></p>
 <p id="section-3-5.3">Provider-side translators (PLATs) <span class="bcp14">MUST</span> translate such packets unless configured
 otherwise. Because administrators may rely on dropping these packets as an
 implicit security policy, the translator <span class="bcp14">MUST</span> provide a configuration option
@@ -1355,7 +1355,7 @@ to disable translation of such packets.<a href="#section-3-5.3" class="pilcrow">
       </h2>
 <p id="section-4-1">There may be cases in which it is desirable to ignore translation of private
 IPv4 addresses due to internal policy or overlapping internal networks.
-In such envinronments, operators need to create configurations
+In such environments, operators need to create configurations
 which address the filtering of private use IPv4 addressing
 if there is an expectation of compliance with
 the original <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
@@ -1388,7 +1388,7 @@ if different prefixes must be used for different IPv4 destinations. None of the
 widely deployed NAT64 Prefix Discovery mechanisms (<span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span>, <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>)
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
-<p id="section-4.1-5">Some NAT64 implementations provides a configuration parameter to
+<p id="section-4.1-5">Some NAT64 implementations provide a configuration parameter to
 relax the <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> restriction for handling non-globally reachable addresses. Refer to <a href="#security" class="auto internal xref">Section 5</a> for a recommendation about such existing implementations.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <p id="section-4.1-6">Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-globally reachable IPv4 addresses.
 Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-globally reachable IPv4 addresses, or rely on host-based CLAT and local synthesis.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
@@ -1408,9 +1408,9 @@ on the restriction in <span><a href="https://rfc-editor.org/rfc/rfc6052#section-
 <p id="section-4.2-1">Use of an NSP or the Local-Use prefix (64:ff9b:1::/48)
 <span>[<a href="#RFC8215" class="cite xref">RFC8215</a>]</span> does not preclude the removal of
 <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> as a "<span class="bcp14">MUST</span>" level recommendation.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Whether a network employs an NSP or 64:ff9b:1::/48, the behavior of synthesizing a private use<br>
-IPv4 address is not prohibited by <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>. The changes specified in <br>
-this document are not impactful to networks using NSPs or the Local-Use 
+<p id="section-4.2-2">Whether a network employs an NSP or 64:ff9b:1::/48, the behavior of synthesizing from a private use   <br>
+IPv4 address is not prohibited by <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>.
+The changes specified in this document are not impactful to networks using NSPs or the Local-Use
 prefix as defined in <span>[<a href="#RFC8215" class="cite xref">RFC8215</a>]</span>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">As discussed in <a href="#introduction" class="auto internal xref">Section 1</a>, utilizing an NSP or
 the Local-Use prefix will typically prevent the use of a public DNS64
@@ -1427,7 +1427,7 @@ use the WKP to maximize compatibility.<a href="#section-4.2-3" class="pilcrow">�
 support a mechanism to expose their default value for handling non-globally reachable addresses (e.g., as a managed object such as a YANG augmentation to <span>[<a href="#RFC8512" class="cite xref">RFC8512</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3-2">Moreover, operators <span class="bcp14">SHOULD</span> ensure (e.g., by enforcing explicit configuration or using mechanism described in <span><a href="https://rfc-editor.org/rfc/rfc8158#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC8158" class="cite xref">RFC8158</a>]</span>) that their managed translations are compliant with the intended policy for packets with non-globally reachable addresses.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 <p id="section-4.3-3">These recommendations may not be easily followed for unmanaged translators (e.g., CLAT).<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">Forwarding of packets with destination non-globally reachable addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Forwarding of packets with destination non-globally reachable addresses, when done on purpose, requires adequate routing policies to be enforced at the translator and/or its servicing routers.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1584,8 +1584,8 @@ used to define authorized traffic patterns through the translator.<a href="#sect
 <p id="appendix-A-1">As noted in Erratum 5547 <span>[<a href="#EID5547" class="cite xref">EID5547</a>]</span>:<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <blockquote id="appendix-A-2">
         <p id="appendix-A-2.1">IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
-Similarly, an IPv6 packet with a destination address representing a private IPv4 address <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> can be translated to an IPv4 packet with a global destination &gt; address by NAT64 [RFC6146].
-If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>, then the packet may not &gt; be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle.<a href="#appendix-A-2.1" class="pilcrow">¶</a></p>
+Similarly, an IPv6 packet with a destination address representing a private IPv4 address <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].
+If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>, then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle.<a href="#appendix-A-2.1" class="pilcrow">¶</a></p>
 </blockquote>
 <p id="appendix-A-3">Removing the restriction in <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> addresses this errata.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
 </section>
@@ -1596,7 +1596,7 @@ If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address usi
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-example-flow" class="section-name selfRef">Example Flow</a>
       </h2>
 <p id="appendix-B-1">To illustrate the updated normative behavior, consider an IPv6-only network
-utilizing 464XLAT <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span> where an administrator want to provide access to
+utilizing 464XLAT <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span> where an administrator wants to provide access to
 an internal, IPv4-only corporate service hosted at 10.1.2.3.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <div id="scenario-a-unmanaged-clat-to-managed-plat-flow">
 <section id="appendix-B.1">
