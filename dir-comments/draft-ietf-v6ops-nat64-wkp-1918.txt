@@ -9,7 +9,7 @@ Intended status: Standards Track                        25 November 2026
 Expires: 29 May 2027
 
 
- Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable`
+  Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable
                              IPv4 Addresses
                  draft-ietf-v6ops-nat64-wkp-1918-latest
 
@@ -279,6 +279,13 @@ Table of Contents
    zone queries to public DNS64 servers must ensure their own servers
    correctly perform DNS64 synthesis for non-globally reachable IPv4
    addresses, or rely on host-based CLAT and local synthesis.
+
+   This update also permits a DNS64 server using the Well-Known Prefix
+   to synthesize AAAA records for the A records of the Well-Known Name
+   ipv4only.arpa, specified by [RFC7050].  The statement in Appendix B
+   of [RFC7050] that such addresses cannot be non-globally reachable was
+   based on the restriction in Section 3.1 of [RFC6052] that no longer
+   applies.
 
 4.2.  Use of Network-Specific or Local-Use Prefix
 

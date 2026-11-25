@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable` IPv4 Addresses</title>
+<title>Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable IPv4 Addresses</title>
 <meta content="Warren Kumari" name="author">
 <meta content="Jen Linkova" name="author">
 <meta content="
@@ -1092,7 +1092,7 @@ svg {
 </dd>
 </dl>
 </div>
-<h1 id="title">Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable` IPv4 Addresses</h1>
+<h1 id="title">Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable IPv4 Addresses</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document modifies the deployment guidance provided in Section 3.1 of RFC 6052 (IPv6 Addressing of IPv4/IPv6 Translators)
@@ -1392,6 +1392,12 @@ for which it should be used.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 relax the <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> restriction for handling non-globally reachable addresses. Refer to <a href="#security" class="auto internal xref">Section 5</a> for a recommendation about such existing implementations.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <p id="section-4.1-6">Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-globally reachable IPv4 addresses.
 Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-globally reachable IPv4 addresses, or rely on host-based CLAT and local synthesis.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
+<p id="section-4.1-7">This update also permits a DNS64 server using the Well-Known Prefix
+to synthesize AAAA records for the A records of the Well-Known Name
+ipv4only.arpa, specified by <span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span>.
+The statement in <span><a href="https://rfc-editor.org/rfc/rfc7050#appendix-B" class="relref">Appendix B</a> of [<a href="#RFC7050" class="cite xref">RFC7050</a>]</span> that such addresses
+cannot be non-globally reachable was based
+on the restriction in <span><a href="https://rfc-editor.org/rfc/rfc6052#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> that no longer applies.<a href="#section-4.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="use-of-network-specific-or-local-use-prefix">
