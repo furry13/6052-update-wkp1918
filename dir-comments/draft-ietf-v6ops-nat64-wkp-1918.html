@@ -1442,7 +1442,14 @@ Administrators may be relying on this implicit filtering as a built-in security
 mechanism to prevent unauthorized access to private IPv4 infrastructure, rather
 than implementing explicit security policies. This reliance is particularly
 prevalent in managed NAT64 (PLAT) environments.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">Modifying the recommended behavior to allow such address compositions may, in
+<p id="section-5-2">For example, a translator's default dropping behavior may have
+served as an implicit defense against DNS rebinding attacks, in
+which an externally controlled name resolves to an AAAA record
+composed of the WKP and a non-globally reachable IPv4 address.  DNS
+rebinding protections implemented in resolvers to filter private use
+A records addresses may not recognize such v4 addresses when
+embedded in AAAA records.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Modifying the recommended behavior to allow such address compositions may, in
 the absence of explicit filtering, enable traffic flows that were previously
 prohibited by the translator's default logic.
 To mitigate this risk, existing managed PLAT implementations
@@ -1451,11 +1458,11 @@ behavior. As specified in <a href="#update" class="auto internal xref">Section 3
 PLAT implementations must provide a configuration knob to
 control this functionality, ensuring that the transition to supporting
 non-globally reachable addresses is an intentional administrative
-action accompanied by a review of local security policies.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">Furthermore, administrators should not rely on the internal verification logic
+action accompanied by a review of local security policies.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Furthermore, administrators should not rely on the internal verification logic
 of a translator to enforce security boundaries. Instead, explicit policies
 such as Access Control Lists (ACLs), firewall policies, or NAT filtering rules must be
-used to define authorized traffic patterns through the translator.<a href="#section-5-3" class="pilcrow">¶</a></p>
+used to define authorized traffic patterns through the translator.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
