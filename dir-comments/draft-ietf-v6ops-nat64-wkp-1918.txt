@@ -9,7 +9,8 @@ Intended status: Standards Track                        25 November 2026
 Expires: 29 May 2027
 
 
-Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses
+ Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable`
+                             IPv4 Addresses
                  draft-ietf-v6ops-nat64-wkp-1918-latest
 
 Abstract
@@ -123,12 +124,12 @@ Table of Contents
    utilize the WKP in order to maximize compatibility.
 
    Because public DNS64 resolvers are not expected to return A records
-   or synthesize AAAA records containing non-global IPv4 addresses, it
-   might appear that using public DNS64 prevents hosts from reaching
-   non-global IPv4 destinations anyway.  However, this is not the case.
-   Even if public DNS64 is used, hosts may still need to reach non-
-   global IPv4 destinations in several scenarios, including, but limited
-   to:
+   or synthesize AAAA records containing non-globally reachable IPv4
+   addresses, it might appear that using public DNS64 prevents hosts
+   from accessing non-globally reachable IPv4 destinations anyway.
+   However, this is not the case.  Even if public DNS64 is used, hosts
+   may still need to access non-globally reachable IPv4 destinations in
+   several scenarios, including, but limited to:
 
    *  IPv4 literals: The network signals public DNS64 servers to hosts,
       but hosts must reach certain IPv4 destinations directly by their
@@ -209,8 +210,8 @@ Table of Contents
    NEW TEXT:
 
    |  The Well-Known Prefix MAY be used by address translators to
-   |  represent non-global IPv4 addresses, such as those listed in
-   |  [RFC1918] and [RFC6598].
+   |  represent non-globally reachable IPv4 addresses, such as those
+   |  listed in [RFC1918] and [RFC6598].
    |  
    |  Unmanaged client-side translators (CLATs) MUST translate packets
    |  in which an address is composed of the Well-Known Prefix and these
@@ -268,16 +269,16 @@ Table of Contents
    subset of IPv4 addresses for which it should be used.
 
    Some NAT64 implementations provides a configuration parameter to
-   relax the [RFC6052] restriction for handling non-global addresses.
-   Refer to Section 5 for a recommendation about such existing
-   implementations.
+   relax the [RFC6052] restriction for handling non-globally reachable
+   addresses.  Refer to Section 5 for a recommendation about such
+   existing implementations.
 
    Public DNS64 servers require no changes, as they are not expected to
-   serve A or AAAA records containing non-global IPv4 addresses.
-   Enterprises and other closed networks forwarding external zone
-   queries to public DNS64 servers must ensure their own servers
-   correctly perform DNS64 synthesis for non-global IPv4 addresses, or
-   rely on host-based CLAT and local synthesis.
+   serve A or AAAA records containing non-globally reachable IPv4
+   addresses.  Enterprises and other closed networks forwarding external
+   zone queries to public DNS64 servers must ensure their own servers
+   correctly perform DNS64 synthesis for non-globally reachable IPv4
+   addresses, or rely on host-based CLAT and local synthesis.
 
 4.2.  Use of Network-Specific or Local-Use Prefix
 
@@ -301,21 +302,21 @@ Table of Contents
 
    Given that distinct behaviors may be exposed by existing and future
    implementations, it is RECOMMENDED that managed translators support a
-   mechanism to expose their default value for handling non-global
-   addresses (e.g., as a managed object such as a YANG augmentation to
-   [RFC8512]).
+   mechanism to expose their default value for handling non-globally
+   reachable addresses (e.g., as a managed object such as a YANG
+   augmentation to [RFC8512]).
 
    Moreover, operators SHOULD ensure (e.g., by enforcing explicit
    configuration or using mechanism described in Section 4.6.4 of
    [RFC8158]) that their managed translations are compliant with the
-   intended policy for packets with non-global addresses.
+   intended policy for packets with non-globally reachable addresses.
 
    These recommendations may not be easily followed for unmanaged
    translators (e.g., CLAT).
 
-   Forwarding of packets with destination non-global addresses, when
-   done in purpose, requires adequate routing policies to be enforced at
-   the translator and/or its servcing routers.
+   Forwarding of packets with destination non-globally reachable
+   addresses, when done in purpose, requires adequate routing policies
+   to be enforced at the translator and/or its servcing routers.
 
 5.  Security Considerations
 
