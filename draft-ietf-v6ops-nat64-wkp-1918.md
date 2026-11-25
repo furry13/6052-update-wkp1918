@@ -1,5 +1,5 @@
 ---
-title: "Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable` IPv4 Addresses"
+title: "Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable IPv4 Addresses"
 abbrev: "nat64-wkp-1918"
 category: std
 
@@ -217,6 +217,14 @@ relax the {{RFC6052}} restriction for handling non-globally reachable addresses.
 
 Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-globally reachable IPv4 addresses.
 Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-globally reachable IPv4 addresses, or rely on host-based CLAT and local synthesis.
+
+
+This update also permits a DNS64 server using the Well-Known Prefix
+to synthesize AAAA records for the A records of the Well-Known Name
+ipv4only.arpa, specified by {{?RFC7050}}.
+The statement in {{Appendix B of RFC7050}} that such addresses
+cannot be non-globally reachable was based
+on the restriction in {{Section 3.1 of RFC6052}} that no longer applies.
 
 ## Use of Network-Specific or Local-Use Prefix
 
