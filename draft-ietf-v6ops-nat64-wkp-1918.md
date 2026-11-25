@@ -1,5 +1,5 @@
 ---
-title: "Using the Well-Known IPv6 Prefix to Represent Non-Global IPv4 Addresses"
+title: "Using the Well-Known IPv6 Prefix to Represent Non-Globally Reachable IPv4 Addresses"
 abbrev: "nat64-wkp-1918"
 category: std
 
@@ -95,6 +95,13 @@ prevents such networks from utilizing the WKP and, consequently, from relying
 on public DNS64 servers (e.g., forwarding requests for external zones to public
 DNS64 servers) that utilize the WKP in order to maximize compatibility.
 
+Because public DNS64 resolvers are not expected to return A records or synthesize AAAA records containing non-globally reachable IPv4 addresses, it might appear that using public DNS64 prevents hosts from accessing non-globally reachable IPv4 destinations anyway.
+However, this is not the case.
+Even if public DNS64 is used, hosts may still need to access non-globally reachable IPv4 destinations in several scenarios, including, but limited to:
+
+* IPv4 literals: The network signals public DNS64 servers to hosts, but hosts must reach certain IPv4 destinations directly by their IPv4 addresses without using DNS.
+* Split-horizon DNS: Dedicated internal DNS servers resolve private corporate zones, while all other queries are forwarded to a public DNS64 server.
+
 Using two Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers (NAT64) prefixes {{?I-D.ietf-v6ops-rfc6146-bis}} — the WKP for Internet destinations and a
 Network-Specific Prefix (NSP) for non-globally reachable IPv4 addresses — is
 not a feasible solution for nodes performing local synthesis or running CLAT.
@@ -116,7 +123,7 @@ with an NSP.
 
 Prohibiting the WKP from representing private IPv4 addresses [RFC1918] and shared addresses [RFC6598]
 offers no substantial benefit to some IPv6-only or IPv6-mostly deployments.
-It might also complicates network design and the behavior of nodes.
+It might also complicate network design and the behavior of nodes.
 
 Given the recent operational experience in deploying IPv6-only and IPv6-mostly
 networks, it is desirable to allow translators to use a single prefix
@@ -154,12 +161,12 @@ OLD TEXT:
 NEW TEXT:
 
 {: quote}
-> The Well-Known Prefix MAY be used to represent non-global IPv4 addresses,
+> The Well-Known Prefix MAY be used by address translators to represent non-globally reachable IPv4 addresses,
 > such as those listed in [RFC1918] and [RFC6598].
 >
 > Unmanaged client-side translators (CLATs) MUST translate packets in which an
 > address is composed of the Well-Known Prefix and these non-globally reachable
-> IPv4 address (such as those defined in [RFC1918] and [RFC6598]) by default.
+> IPv4 addresses (such as those defined in [RFC1918] and [RFC6598]) by default.
 >
 > Provider-side translators (PLATs) MUST translate such packets unless configured
 > otherwise. Because administrators may rely on dropping these packets as an
@@ -170,7 +177,7 @@ NEW TEXT:
 
 There may be cases in which it is desirable to ignore translation of private
 IPv4 addresses due to internal policy or overlapping internal networks.
-In such envinronments, operators need to create configurations
+In such environments, operators need to create configurations
 which address the filtering of private use IPv4 addressing
 if there is an expectation of compliance with
 the original {{Section 3.1 of !RFC6052}}.
@@ -205,9 +212,19 @@ widely deployed NAT64 Prefix Discovery mechanisms ([RFC7050], [RFC8781])
 provide a method to map a specific NAT64 prefix to a subset of IPv4 addresses
 for which it should be used.
 
+Some NAT64 implementations provide a configuration parameter to
+relax the {{RFC6052}} restriction for handling non-globally reachable addresses. Refer to {{security}} for a recommendation about such existing implementations.
 
-Some NAT64 implementations provides a configuration parameter to
-relax the {{RFC6052}} restriction for handling non-global addresses. Refer to {{security}} for a recommendation about such existing implementations.
+Public DNS64 servers require no changes, as they are not expected to serve A or AAAA records containing non-globally reachable IPv4 addresses.
+Enterprises and other closed networks forwarding external zone queries to public DNS64 servers must ensure their own servers correctly perform DNS64 synthesis for non-globally reachable IPv4 addresses, or rely on host-based CLAT and local synthesis.
+
+
+This update also permits a DNS64 server using the Well-Known Prefix
+to synthesize AAAA records for the A records of the Well-Known Name
+ipv4only.arpa, specified by {{?RFC7050}}.
+The statement in {{Appendix B of RFC7050}} that such addresses
+cannot be non-globally reachable was based
+on the restriction in {{Section 3.1 of RFC6052}} that no longer applies.
 
 ## Use of Network-Specific or Local-Use Prefix
 
@@ -215,9 +232,9 @@ Use of an NSP or the Local-Use prefix (64:ff9b:1::/48)
 [RFC8215] does not preclude the removal of
 {{Section 3.1 of RFC6052}} as a "MUST" level recommendation.
 
-Whether a network employs an NSP or 64:ff9b:1::/48, the behavior of synthesizing a private use	
-IPv4 address is not prohibited by [RFC6052]. The changes specified in	
-this document are not impactful to networks using NSPs or the Local-Use	
+Whether a network employs an NSP or 64:ff9b:1::/48, the behavior of synthesizing from a private use	
+IPv4 address is not prohibited by [RFC6052].
+The changes specified in this document are not impactful to networks using NSPs or the Local-Use
 prefix as defined in [RFC8215].
 
 As discussed in [Introduction](#introduction), utilizing an NSP or
@@ -225,16 +242,17 @@ the Local-Use prefix will typically prevent the use of a public DNS64
 resolver in the vast majority of cases, as large scale public DNS64 resolvers
 use the WKP to maximize compatibility.
 
+
 ## Monitoring Translator Behaviors
 
 Given that distinct behaviors may be exposed by existing and future implementations, it is RECOMMENDED that managed translators
-support a mechanism to expose their default value for handling non-global addresses (e.g., as a managed object such as a YANG augmentation to {{?RFC8512}}).
+support a mechanism to expose their default value for handling non-globally reachable addresses (e.g., as a managed object such as a YANG augmentation to {{?RFC8512}}).
 
-Moreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-global addresses.
+Moreover, operators SHOULD ensure (e.g., by enforcing explicit configuration or using mechanism described in {{Section 4.6.4 of ?RFC8158}}) that their managed translations are compliant with the intended policy for packets with non-globally reachable addresses.
 
 These recommendations may not be easily followed for unmanaged translators (e.g., CLAT).
 
-Forwarding of packets with destination non-global addresses, when done in purpose, requires adequate routing policies to be enforced at the translator and/or its servcing routers.
+Forwarding of packets with destination non-globally reachable addresses, when done on purpose, requires adequate routing policies to be enforced at the translator and/or its servicing routers.
 
 # Security Considerations {#security}
 
@@ -249,6 +267,14 @@ Administrators may be relying on this implicit filtering as a built-in security
 mechanism to prevent unauthorized access to private IPv4 infrastructure, rather
 than implementing explicit security policies. This reliance is particularly
 prevalent in managed NAT64 (PLAT) environments.
+
+For example, a translator's default dropping behavior may have
+served as an implicit defense against DNS rebinding attacks, in
+which an externally controlled name resolves to an AAAA record
+composed of the WKP and a non-globally reachable IPv4 address.
+DNS rebinding protections implemented in resolvers to filter private use
+A records addresses may not recognize such v4 addresses when
+embedded in AAAA records.
 
 Modifying the recommended behavior to allow such address compositions may, in
 the absence of explicit filtering, enable traffic flows that were previously
@@ -278,16 +304,16 @@ This document has no IANA actions.
 As noted in Erratum 5547 [eid5547]:
 
 {: quote}
-> IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
-> Similarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination > address by NAT64 [RFC6146].
-> If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address [RFC6052], then the packet may not > be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle.
+>IPv4 packets with private destination addresses are routinely translated to IPv4 packets with global destination addresses in NAT44.
+>Similarly, an IPv6 packet with a destination address representing a private IPv4 address [RFC6052] can be translated to an IPv4 packet with a global destination address by NAT64 [RFC6146].
+If a 464XLAT CLAT cannot translate a private IPv4 address to an IPv6 address using the NAT64 /96 prefix and that IPv4 address [RFC6052], then the packet may not be translated to an IPv4 packet with a global address by the 464XLAT PLAT (stateful NAT64). This changes the intent of the sender, and in so doing violates the end to end principle.
 
 Removing the restriction in {{Section 3.1 of RFC6052}} addresses this errata.
 
 # Example Flow {#sec-example}
 
 To illustrate the updated normative behavior, consider an IPv6-only network
-utilizing 464XLAT {{?RFC6877}} where an administrator want to provide access to
+utilizing 464XLAT {{?RFC6877}} where an administrator wants to provide access to
 an internal, IPv4-only corporate service hosted at 10.1.2.3.
 
 ## Scenario A: Unmanaged CLAT to Managed PLAT Flow
@@ -331,4 +357,4 @@ administrative policy configures it to drop such packet.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, Ted Lemon, Jordi Palet, Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
+The authors would like to thank Mikael Abrahamsson, Mohamed Boucadair, Nick Buraglio, Lorenzo Colitti, Brian Carpenter, Goetz Goerisch, Wes Hardaker, Suresh Krishnan, David Lawrence, Ted Lemon, Jordi Palet, Suraj Sharma, XiPeng Xiao, and Andrew Yourtchenko for their helpful comments and suggestions on this document.
