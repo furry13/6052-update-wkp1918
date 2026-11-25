@@ -260,6 +260,14 @@ mechanism to prevent unauthorized access to private IPv4 infrastructure, rather
 than implementing explicit security policies. This reliance is particularly
 prevalent in managed NAT64 (PLAT) environments.
 
+For example, a translator's default dropping behavior may have
+served as an implicit defense against DNS rebinding attacks, in
+which an externally controlled name resolves to an AAAA record
+composed of the WKP and a non-globally reachable IPv4 address.  DNS
+rebinding protections implemented in resolvers to filter private use
+A records addresses may not recognize such v4 addresses when
+embedded in AAAA records.
+
 Modifying the recommended behavior to allow such address compositions may, in
 the absence of explicit filtering, enable traffic flows that were previously
 prohibited by the translator's default logic.
