@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-24T07:36:25.080165+00:00",
+  "timestamp": "2026-11-26T05:57:32.589853+00:00",
   "repo": "furry13/6052-update-wkp1918",
   "labels": [
     {
@@ -49,7 +49,26 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 15,
+      "id": "I_kwDOQNM3Es8AAAABiO7d8A",
+      "title": "ietf last call Dnsdir review",
+      "url": "https://github.com/furry13/6052-update-wkp1918/issues/15",
+      "state": "CLOSED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "furry13"
+      ],
+      "labels": [],
+      "body": "Reviewer: David Lawrence\nReview result: Almost Ready\n\nFor review from a DNS Directorate standpoint, the draft introduces no\nnew DNS protocol changes and no new RRtypes.\n\nThe only likely DNS impact is for operational alignment where local\nDNS64 exclusion policies (if configured) match the NAT64 translator's\npolicy.  While I can't speak to how all implementations are written, I\nbelieve there are no required code changes in recursive or\nauthoritative DNS implementations. \n\nBIND9, for example, appears to control all of its dns64 address policy\nthrough configuration, and does not have any built-in defaults or code\nthat directly enforces the to-be-relaxed WKP+1918 restriction.  Maybe\nthe Public DNS64 resolvers need some code changes, but given the\nnature of removing the restriction, I'd expect that any such change\nis super simple to make.\n\nThat said, the new normative text only explicitly names CLATs and\nPLATs. RFC 6052 1.3 defines an address translator to include DNS64 (as\nwell as ALGs) and so DNS64 is covered by the old text.  While the new\ntext can be read to alleviate this restriction on DNS64 with its broad\n\"MAY\", perhaps simply inserting \"by address translators\" after \"MAY be\nused\" would more explicitly indicate that this update eases all of the\nprevious restrictions.\n\n== Security Considerations:\n\nI essentially agree that this doesn't inherently introduce a new\nsecurity problem, especially since some of the same DNS rebinding\nissues are present when using an NSP, but it does broaden the risk\nsomewhat, especially through the Public DNS64 resolvers that serve as\npart of the motivation for the document.  Also, some DNS rebinding\nprotection is done through local resolvers or other CPE filtering.\n\nMaybe something like this would be helpful after the paragraph ending\n\"This reliance is particularly prevalent in managed NAT64 (PLAT)\nenvironments.\", to bring in the \"DNS rebinding\" phrase explicitly:\n\n  For example, a translator's default dropping behavior may have\n  served as an implicit defense against DNS rebinding attacks, in\n  which an externally controlled name resolves to an AAAA record\n  composed of the WKP and a non-globally reachable IPv4 address.  DNS\n  rebinding protections implemented in resolvers to filter private use\n  A records addresses may not recognize such v4 addresses when\n  embedded in AAAA records.\n\n== Minor issue:\n\n8190 has tried to explicitly clarify \"global\" vs \"globally reachable\"\nand their \"non-\" counterparts.  This document does a pretty good job\nof usually using the \"reachable\" form, but not consistently.  Though I\npersonally would like it if we could use the more succinct version, it\nseems the right thing to do here is to update the \"non-global\"s to\n\"non-globally reachable\"s, including in the NEW TEXT, the end of\nsection 4.1, and in section 4.3.  The 5547 erratum is quoted and\nshould, of course, be left as-is.\n\n== Minor document dependency issue:\n\nRFC 7050 Appendix B uses 6052 3.1 as its rationale against using\nthen-existing non-globally reachable addresses for ipv4only.arpa, and\nnow that rationale is going away. But also, the 7050 addresses are in\nthe v4 special use table as non-globally reachable, though 7050\npredated that nomenclature alignment of 8190 and said it was avoiding\n\"non-global\", and so picked from [192.0.0.0/24](http://192.0.0.0/24), which 5735 had\noriginally described as \"global\".\n\nAnyway, to me this reads as 6052 3.1 prohibiting synthesis given\nthe state of the IANA registry for the WKN addresses\n\nI'm prepared to be told I'm wrong, but even if so, then that potential\nconfusion point still indicates making it explicit in section 4 text,\nwithout having to call out 7050 in the proposal of section 3.\nSomething like:\n\n This update also permits a DNS64 server using the Well-Known Prefix\n to synthesize AAAA records for the A records of the Well-Known Name\n ipv4only.arpa, specified by RFC 7050. The statement in Appendix B of\n 7050 that such addresses cannot be non-globally reachable was based\n on the restriction in RFC 6052 Section 3.1 that no longer applies.\n\nAppendix B is not normative, only informative, about the implications\nof the other RFCs, so while acknowledging it in the document body\nseems apt, adding 7050 to Updates is not.\n\n== Editorial nits:\n\n* Section 1: \"might also complicates\" -> \"might also complicate\"\n* Section 3: \"in more details\" -> \"in more detail\"\n* Section 3: \"these [...] IPv4 address\" -> \"these [...] IPv4 addresses\"\n* Section 4: \"envinronments\" -> \"environments\"\n* Section 4.1: \"implementations provides\" -> \"implementations provide\"\n* Section 4.2: \"synthesizing a private use IPv4\" ->\n               \"synthesizing from a private use IPv4\"\n* Section 4.2: wonky text formatting of second paragraph in plain text version\n* Section 4.3: \"done in purpose\" -> \"done on purpose\"\n* Section 4.3: \"servcing\" -> \"servicing\"\n* Appendix A: A couple of stray \">\" characters\n* Appendix B: \"an administrator want\" -> \"an administrator wants\"",
+      "createdAt": "2026-11-24T22:04:28Z",
+      "updatedAt": "2026-11-25T20:33:16Z",
+      "closedAt": "2026-11-25T20:33:16Z",
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -980,26 +999,70 @@
       "id": "PR_kwDOQNM3Es8AAAABM5fiWw",
       "title": "Suraj Sharma's IETF LC comment",
       "url": "https://github.com/furry13/6052-update-wkp1918/pull/14",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "furry13",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-11-04T19:47:03Z",
-      "updatedAt": "2026-11-04T19:48:23Z",
+      "updatedAt": "2026-11-24T22:04:03Z",
       "baseRepository": "furry13/6052-update-wkp1918",
       "baseRefName": "main",
       "baseRefOid": "afccbc7f49628007bfb9d09f3f40654119f4d6fb",
       "headRepository": "furry13/6052-update-wkp1918",
       "headRefName": "ietf-lc",
       "headRefOid": "b6b67a8c340c91bc75795ec893f82e5f7edb443b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-11-24T22:04:02Z",
+      "mergedAt": "2026-11-24T22:04:02Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "4143e68b0e82edd3747fc1cac3c7c5b2aaf5bc77"
+      },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOQNM3Es8AAAABRu3IUw",
+      "title": "ietf last call Dnsdir review from David Lawrence",
+      "url": "https://github.com/furry13/6052-update-wkp1918/pull/16",
+      "state": "MERGED",
+      "author": "furry13",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #15 ",
+      "createdAt": "2026-11-25T04:03:53Z",
+      "updatedAt": "2026-11-25T20:33:15Z",
+      "baseRepository": "furry13/6052-update-wkp1918",
+      "baseRefName": "main",
+      "baseRefOid": "4143e68b0e82edd3747fc1cac3c7c5b2aaf5bc77",
+      "headRepository": "furry13/6052-update-wkp1918",
+      "headRefName": "dir-comments",
+      "headRefOid": "4eda9e6e2f90d2f0b2988a0551c6ea43b32afaed",
+      "closedAt": "2026-11-25T20:33:14Z",
+      "mergedAt": "2026-11-25T20:33:14Z",
+      "mergedBy": "furry13",
+      "mergeCommit": {
+        "oid": "a65517a5888755906e7335b5aab68577a3363e56"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOQNM3Es8AAAABaUDlwQ",
+          "commit": {
+            "abbreviatedOid": "4eda9e6"
+          },
+          "author": "wkumari",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you, all looks good to me!",
+          "createdAt": "2026-11-25T15:54:59Z",
+          "updatedAt": "2026-11-25T15:54:59Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
